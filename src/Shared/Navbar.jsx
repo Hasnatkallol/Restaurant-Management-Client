@@ -92,9 +92,9 @@ const Navbar = () => {
                 {links}
               </ul>
             </div>
-            <h1 className="text-[#F3F1C4] text-2xl">
+            <h1 className="text-[#F3F1C4] text-xl lg:text-2xl">
               {" "}
-              <i> B for buffet</i>{" "}
+              <i> RestroFlow</i>{" "}
             </h1>
           </div>
           <div className="navbar-center hidden lg:flex">
@@ -115,7 +115,7 @@ const Navbar = () => {
                 <>
                   <button
                     onClick={handleLogout}
-                    className="bg-[#F3DB89] btn px-8 py-1 text-2xl border-none rounded-4xl text-[#403F2B] hover:bg-[#403F2B] hover:text-[#F3DB89]"
+                    className="bg-[#F3DB89] btn px-2 lg:px-8 py-1 text-2xl border-none rounded-4xl text-[#403F2B] hover:bg-[#403F2B] hover:text-[#F3DB89]"
                   >
                     Logout
                   </button>
