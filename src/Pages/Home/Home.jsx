@@ -4,12 +4,14 @@ import Slider from "./Slider";
 
 import CustomerFeedback from "./CustomerFeedback";
 import StaffSchedulePanel from "./StaffSchedulepanel";
+import TopPurchase from "./TopPurchase";
 
 const Home = () => {
   return (
     <div className="">
       <Banner></Banner>
       <Slider></Slider>
+      <TopPurchase></TopPurchase>
       <CustomerFeedback></CustomerFeedback>
       <StaffSchedulePanel></StaffSchedulePanel>
     </div>

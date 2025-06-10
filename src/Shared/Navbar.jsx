@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
 import { FaMoon } from "react-icons/fa";
@@ -6,10 +6,17 @@ import { Tooltip } from "react-tooltip";
 import { CiSun } from "react-icons/ci";
 
 const Navbar = () => {
-  const { user, theme, setTheme, logOut } = use(FirebaseAuthContext);
+  const { user, logOut } = use(FirebaseAuthContext);
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
+
   const navigate = useNavigate();
   const handleLogout = () => {
     logOut()

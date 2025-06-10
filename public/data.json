@@ -1,0 +1,128 @@
+[
+  {
+    "name": "Margherita Pizza",
+    "image": "https://images.unsplash.com/photo-1548365328-89d552254237?auto=format&fit=crop&w=600&q=80",
+    "category": "Pizza",
+    "quantity": 25,
+    "price": 10.99,
+    "purchaseCount": 120,
+    "description": "Classic Italian pizza with fresh tomatoes, mozzarella, and basil.",
+    "origin": "Italy",
+    "addBy": {
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com"
+    }
+  },
+  {
+    "name": "Cheeseburger",
+    "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80",
+    "category": "Burgers",
+    "quantity": 40,
+    "price": 8.49,
+    "purchaseCount": 95,
+    "description": "Juicy grilled beef patty topped with cheese, lettuce, and tomato.",
+    "origin": "United States",
+    "addBy": {
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com"
+    }
+  },
+  {
+    "name": "Caesar Salad",
+    "image": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=80",
+    "category": "Salads",
+    "quantity": 30,
+    "price": 6.99,
+    "purchaseCount": 75,
+    "description": "Romaine lettuce tossed with Caesar dressing, croutons, and parmesan.",
+    "origin": "Mexico",
+    "addBy": {
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com"
+    }
+  },
+  {
+    "name": "Spaghetti Carbonara",
+    "image": "https://images.unsplash.com/photo-1589308078059-227c18c6f6d3?auto=format&fit=crop&w=600&q=80",
+    "category": "Pasta",
+    "quantity": 20,
+    "price": 12.50,
+    "purchaseCount": 88,
+    "description": "Creamy pasta with pancetta, eggs, and parmesan cheese.",
+    "origin": "Italy",
+    "addBy": {
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com"
+    }
+  },
+  {
+    "name": "Grilled Chicken",
+    "image": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=600&q=80",
+    "category": "Main Course",
+    "quantity": 18,
+    "price": 14.99,
+    "purchaseCount": 64,
+    "description": "Tender grilled chicken breast served with herbs and spices.",
+    "origin": "Global",
+    "addBy": {
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com"
+    }
+  },
+  {
+    "name": "Sushi Platter",
+    "image": "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=600&q=80",
+    "category": "Japanese",
+    "quantity": 15,
+    "price": 17.99,
+    "purchaseCount": 48,
+    "description": "Assorted sushi rolls with fresh fish, rice, and seaweed.",
+    "origin": "Japan",
+    "addBy": {
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com"
+    }
+  },
+  {
+    "name": "Tacos",
+    "image": "https://images.unsplash.com/photo-1552332386-f8dd00dc0a91?auto=format&fit=crop&w=600&q=80",
+    "category": "Mexican",
+    "quantity": 50,
+    "price": 7.50,
+    "purchaseCount": 102,
+    "description": "Soft corn tortillas filled with meat, veggies, and salsa.",
+    "origin": "Mexico",
+    "addBy": {
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com"
+    }
+  },
+  {
+    "name": "Butter Chicken",
+    "image": "https://images.unsplash.com/photo-1604908177526-3f67a6d67b5c?auto=format&fit=crop&w=600&q=80",
+    "category": "Indian",
+    "quantity": 22,
+    "price": 13.25,
+    "purchaseCount": 80,
+    "description": "Rich, creamy tomato-based curry with tender chicken pieces.",
+    "origin": "India",
+    "addBy": {
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com"
+    }
+  },
+  {
+    "name": "Chocolate Cake",
+    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80",
+    "category": "Desserts",
+    "quantity": 35,
+    "price": 5.75,
+    "purchaseCount": 130,
+    "description": "Moist and rich chocolate cake with fudge frosting.",
+    "origin": "France",
+    "addBy": {
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com"
+    }
+  }
+]
