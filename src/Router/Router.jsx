@@ -9,6 +9,8 @@ import Gellery from "../Pages/Gellery/Gellery";
 import Errorpage from "../Pages/Errorpage/ErrorPage";
 import Loading from "../Shared/Loading";
 import TopDetails from "../Shared/TopDetails";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import PurchaseFood from "../Shared/PurchaseFood";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +48,17 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:4000/foods/${params.id}`),
         Component: TopDetails,
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "purchase/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/foods/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <PurchaseFood></PurchaseFood>
+          </PrivateRoute>
+        ),
         hydrateFallbackElement: <Loading></Loading>,
       },
     ],

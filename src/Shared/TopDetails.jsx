@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 
 const TopDetails = () => {
   const {
@@ -73,9 +73,12 @@ const TopDetails = () => {
               <p className="text-gray-600">{addBy?.email}</p>
             </div>
 
-            <button className="w-full mt-4 bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">
-              Purchase Now
-            </button>
+            <Link className="flex items-centers " to={`/purchase/${_id}`}>
+              {" "}
+              <button className="bg-gradient-to-r  from-[#e0f2ff] via-[#e9e7fc] to-[#f1e7ff] text-black font-semibold py-3 my-4 px-6 rounded-2xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg hover:opacity-95">
+                Purchase
+              </button>{" "}
+            </Link>
           </div>
         </div>
       </div>
