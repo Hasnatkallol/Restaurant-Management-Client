@@ -78,7 +78,7 @@ const Navbar = () => {
               }
               to={"/myfood"}
             >
-              Add Food
+              My Food
             </NavLink>
           </li>
         </>
