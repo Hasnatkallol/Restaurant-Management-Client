@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useLoaderData } from "react-router";
+import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
 
 const TopDetails = () => {
   const {
@@ -14,6 +15,7 @@ const TopDetails = () => {
     origin,
     addBy,
   } = useLoaderData();
+  const { user } = useContext(FirebaseAuthContext)
 
   useEffect(() => {
     fetch(`http://localhost:4000/foods/${_id}`)
@@ -53,9 +55,7 @@ const TopDetails = () => {
               </div>
               <div>
                 <p className="font-semibold text-gray-600">Price</p>
-                <p className="text-green-600 font-semibold">
-                  ${price.toFixed(2)}
-                </p>
+                <p className="text-green-600 font-semibold">${price}</p>
               </div>
               <div>
                 <p className="font-semibold text-gray-600">Purchased</p>
@@ -69,8 +69,8 @@ const TopDetails = () => {
           <div className="mt-6 flex flex-col gap-4">
             <div className="border-t pt-4">
               <p className="text-sm text-gray-500">Added by:</p>
-              <p className="text-gray-800 font-semibold">{addBy?.name}</p>
-              <p className="text-gray-600">{addBy?.email}</p>
+              <p className="text-gray-800 font-semibold">{addBy?.name || user.displayName}</p>
+              <p className="text-gray-600">{addBy?.email ||  user.email}</p>
             </div>
 
             <Link className="flex items-centers " to={`/purchase/${_id}`}>

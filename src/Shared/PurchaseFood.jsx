@@ -72,7 +72,7 @@ const PurchaseFood = () => {
           </label>
           <input
             type="text"
-            defaultValue={`$${price.toFixed(2)}`}
+            defaultValue={`$${price}`}
             readOnly
             className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
           />

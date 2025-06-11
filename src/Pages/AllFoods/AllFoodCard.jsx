@@ -5,7 +5,6 @@ import { Link } from "react-router";
 
 const AllFoodCard = ({ food }) => {
   const { _id } = food;
-  console.log(_id, food);
 
   if (!food) return <Loading />;
   return (
@@ -42,7 +41,7 @@ const AllFoodCard = ({ food }) => {
 
             <div className="flex items-center justify-between">
               <span className="text-green-600 font-bold text-lg">
-                ${food.price?.toFixed(2) || "0.00"}
+                ${food.price}
               </span>
 
               <Link className="flex items-centers " to={`/foods/${_id}`}>
