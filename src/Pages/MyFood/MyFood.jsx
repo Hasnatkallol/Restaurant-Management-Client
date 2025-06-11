@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { FirebaseAuthContext } from "../../Firebase/FirebaseAuthContext";
 import { Link } from "react-router";
+import Swal from "sweetalert2";
 
 const MyFood = () => {
   const { user } = useContext(FirebaseAuthContext);
@@ -15,8 +16,38 @@ const MyFood = () => {
         .catch((error) => console.error("Failed to fetch listings:", error));
     }
   }, [user.email]);
-  const handleDelete = () => {
-    console.log("delete");
+  const handleDelete = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:4000/foods/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data.deletedCount);
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Deleted Successfully .",
+                icon: "success",
+              });
+
+              const remainingFood = myFood.filter(
+                (element) => element._id !== _id
+              );
+              setMyFood(remainingFood);
+            }
+          });
+      }
+    });
   };
   return (
     <div className="w-11/12 mx-auto mt-10">
