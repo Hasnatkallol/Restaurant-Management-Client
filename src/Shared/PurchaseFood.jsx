@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { useLoaderData } from "react-router";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
-
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const PurchaseFood = () => {
   const { user } = useContext(FirebaseAuthContext);
@@ -32,13 +33,13 @@ const PurchaseFood = () => {
       buyerEmail: user.email,
       purchaseDate: getFormattedDateTime(),
     };
-    console.log("Purchase Data Submitted:", purchaseData);
-       SiAxios
-      .post("http://localhost:3000/applications", application)
+
+    axios
+      .post("http://localhost:4000/purchasefood", purchaseData)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({
-            title: "Application successfully added ",
+            title: "This Food successfully added in purchase database",
             icon: "success",
             draggable: true,
           });

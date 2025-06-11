@@ -5,12 +5,13 @@ import AllFoods from "../Pages/AllFoods/AllFoods";
 
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
-import Gellery from "../Pages/Gellery/Gellery";
+
 import Errorpage from "../Pages/Errorpage/ErrorPage";
 import Loading from "../Shared/Loading";
 import TopDetails from "../Shared/TopDetails";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import PurchaseFood from "../Shared/PurchaseFood";
+import Gellery from "../Pages/Gellery/Gellery";
 
 export const router = createBrowserRouter([
   {
