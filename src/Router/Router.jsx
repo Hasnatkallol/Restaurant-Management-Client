@@ -12,6 +12,7 @@ import TopDetails from "../Shared/TopDetails";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import PurchaseFood from "../Shared/PurchaseFood";
 import Gellery from "../Pages/Gellery/Gellery";
+import AddFood from "../Pages/AddFood/AddFood";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,15 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <PurchaseFood></PurchaseFood>
+          </PrivateRoute>
+        ),
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "addfood",
+        element: (
+          <PrivateRoute>
+            <AddFood></AddFood>
           </PrivateRoute>
         ),
         hydrateFallbackElement: <Loading></Loading>,

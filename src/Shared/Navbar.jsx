@@ -59,6 +59,20 @@ const Navbar = () => {
           Gellery
         </NavLink>
       </li>
+      {user && (
+        <>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-[#F3DB89] text-2xl" : "text-white text-2xl"
+              }
+              to={"/addfood"}
+            >
+              Add Food
+            </NavLink>
+          </li>
+        </>
+      )}
 
       <button onClick={toggleTheme} className="my-2 mx-2">
         {theme === "light" ? <FaMoon size={30} /> : <CiSun size={30} />}
