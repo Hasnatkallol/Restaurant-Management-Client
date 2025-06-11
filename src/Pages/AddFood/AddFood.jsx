@@ -111,8 +111,8 @@ const AddFood = () => {
         <div>
           <label className="block font-medium mb-1">Added by (Name)</label>
           <input
-            type="email"
-            name="email"
+            type="text"
+            name="name"
             className="w-full border rounded px-3 py-2"
             value={user.displayName}
             readOnly

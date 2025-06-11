@@ -14,6 +14,8 @@ import PurchaseFood from "../Shared/PurchaseFood";
 import Gellery from "../Pages/Gellery/Gellery";
 import AddFood from "../Pages/AddFood/AddFood";
 import MyFood from "../Pages/MyFood/MyFood";
+import Update from "../Pages/MyFood/Update";
+
 
 export const router = createBrowserRouter([
   {
@@ -78,6 +80,17 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
               <MyFood></MyFood>
+          </PrivateRoute>
+        ),
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+            {
+        path: "update/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/foods/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <Update></Update>
           </PrivateRoute>
         ),
         hydrateFallbackElement: <Loading></Loading>,
