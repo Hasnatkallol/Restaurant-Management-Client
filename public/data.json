@@ -1,7 +1,7 @@
 [
   {
     "name": "Margherita Pizza",
-    "image": "https://images.unsplash.com/photo-1548365328-89d552254237?auto=format&fit=crop&w=600&q=80",
+    "image": "https://i.ibb.co/FqLkw1qV/download.jpg",
     "category": "Pizza",
     "quantity": 25,
     "price": 10.99,
@@ -15,7 +15,7 @@
   },
   {
     "name": "Cheeseburger",
-    "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80",
+    "image": "https://i.ibb.co/5XgZcCNg/download.jpg",
     "category": "Burgers",
     "quantity": 40,
     "price": 8.49,
@@ -29,7 +29,7 @@
   },
   {
     "name": "Caesar Salad",
-    "image": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=80",
+    "image": "https://i.ibb.co/20C1mMzJ/download.jpg",
     "category": "Salads",
     "quantity": 30,
     "price": 6.99,
@@ -43,7 +43,7 @@
   },
   {
     "name": "Spaghetti Carbonara",
-    "image": "https://images.unsplash.com/photo-1589308078059-227c18c6f6d3?auto=format&fit=crop&w=600&q=80",
+    "image": "https://i.ibb.co/qYPVyVD2/download.jpg",
     "category": "Pasta",
     "quantity": 20,
     "price": 12.50,
@@ -57,7 +57,7 @@
   },
   {
     "name": "Grilled Chicken",
-    "image": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=600&q=80",
+    "image": "https://i.ibb.co/FL0ZtQS0/images.jpg",
     "category": "Main Course",
     "quantity": 18,
     "price": 14.99,
@@ -71,7 +71,7 @@
   },
   {
     "name": "Sushi Platter",
-    "image": "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=600&q=80",
+    "image": "https://i.ibb.co/Qvjk0Kcw/download.jpg",
     "category": "Japanese",
     "quantity": 15,
     "price": 17.99,
@@ -85,7 +85,7 @@
   },
   {
     "name": "Tacos",
-    "image": "https://images.unsplash.com/photo-1552332386-f8dd00dc0a91?auto=format&fit=crop&w=600&q=80",
+    "image": "https://i.ibb.co/ds7WB4kY/download.jpg",
     "category": "Mexican",
     "quantity": 50,
     "price": 7.50,
@@ -99,7 +99,7 @@
   },
   {
     "name": "Butter Chicken",
-    "image": "https://images.unsplash.com/photo-1604908177526-3f67a6d67b5c?auto=format&fit=crop&w=600&q=80",
+    "image": "https://i.ibb.co/yBpsrpcm/download.jpg",
     "category": "Indian",
     "quantity": 22,
     "price": 13.25,
@@ -113,11 +113,11 @@
   },
   {
     "name": "Chocolate Cake",
-    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80",
+    "image": "https://i.ibb.co/gFjtZ1bZ/download.jpg",
     "category": "Desserts",
     "quantity": 35,
     "price": 5.75,
-    "purchaseCount": 130,
+    "purchaseCount": 50,
     "description": "Moist and rich chocolate cake with fudge frosting.",
     "origin": "France",
     "addBy": {

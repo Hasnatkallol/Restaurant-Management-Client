@@ -8,6 +8,7 @@ import Login from "../Pages/Login/Login";
 import Gellery from "../Pages/Gellery/Gellery";
 import Errorpage from "../Pages/Errorpage/ErrorPage";
 import Loading from "../Shared/Loading";
+import TopDetails from "../Shared/TopDetails";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,13 @@ export const router = createBrowserRouter([
       {
         path: "gellery",
         Component: Gellery,
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "foods/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/foods/${params.id}`),
+        Component: TopDetails,
         hydrateFallbackElement: <Loading></Loading>,
       },
     ],

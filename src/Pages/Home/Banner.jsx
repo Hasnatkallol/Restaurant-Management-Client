@@ -4,7 +4,10 @@ const Banner = () => {
   return (
     <div className="bg-[#403F2B] py-5 ">
       <div className="w-11/12 mx-auto">
-        <h1 className="text-[#F3F1C4] text-4xl md:text-6xl lg:text-8xl text-center font-bold lg:pb-5">
+        {/* <h1 className="text-[#F3F1C4] text-4xl md:text-6xl lg:text-8xl text-center font-bold lg:pb-5">
+          Welcome to RestroFlow
+        </h1> */}
+        <h1 className="text-primary text-4xl md:text-6xl lg:text-8xl text-center font-bold lg:pb-5">
           Welcome to RestroFlow
         </h1>
 
