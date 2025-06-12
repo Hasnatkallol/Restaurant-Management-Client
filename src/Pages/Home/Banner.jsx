@@ -7,7 +7,7 @@ const Banner = () => {
         {/* <h1 className="text-[#F3F1C4] text-4xl md:text-6xl lg:text-8xl text-center font-bold lg:pb-5">
           Welcome to RestroFlow
         </h1> */}
-        <h1 className="text-primary text-4xl md:text-6xl lg:text-8xl text-center font-bold lg:pb-5">
+        <h1 className="text-white text-4xl md:text-6xl lg:text-8xl text-center font-bold lg:pb-5">
           Welcome to RestroFlow
         </h1>
 

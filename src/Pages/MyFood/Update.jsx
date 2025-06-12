@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
+
 import { useLoaderData } from "react-router";
-import { FirebaseAuthContext } from "../../Firebase/FirebaseAuthContext";
 import Swal from "sweetalert2";
 
 const Update = () => {
-  const { user } = useContext(FirebaseAuthContext);
   const food = useLoaderData();
 
   const handleUpdate = (e) => {
@@ -12,6 +11,8 @@ const Update = () => {
     const form = e.target;
     const formData = new FormData(form);
     const newListing = Object.fromEntries(formData.entries());
+    console.log(newListing);
+
     fetch(`http://localhost:4000/foods/${food._id}`, {
       method: "PUT",
       headers: {
@@ -41,126 +42,127 @@ const Update = () => {
   };
   return (
     <div>
-      <div className="max-w-3xl mx-auto mt-10  shadow-xl rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
-          Update Food
-        </h2>
-        <form
-          onSubmit={handleUpdate}
-          className="grid grid-cols-1 md:grid-cols-2 gap-4"
-        >
-          <div>
-            <label className="block font-medium mb-1">Food Name</label>
-            <input
-              type="text"
-              name="name"
-              defaultValue={food.name}
-              required
-              className="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300"
-            />
+      <div>
+        <div className="p-24">
+          <div className="p-12 text-center space-y-4">
+            <h1 className="text-6xl font-bold">Update Food</h1>
+            <p className="text-lg"></p>
           </div>
+          <form
+            onSubmit={handleUpdate}
+            className="grid grid-cols-1 md:grid-cols-2 gap-4"
+          >
+            <div>
+              <label className="block font-medium mb-1">Food Name</label>
+              <input
+                type="text"
+                name="name"
+                defaultValue={food.name}
+                required
+                className="w-full border rounded px-3 py-2"
+              />
+            </div>
 
-          <div>
-            <label className="block font-medium mb-1">Food Image URL</label>
-            <input
-              type="text"
-              name="image"
-              required
-              defaultValue={food.image}
-              className="w-full border rounded px-3 py-2"
-            />
-          </div>
+            <div>
+              <label className="block font-medium mb-1">Food Image URL</label>
+              <input
+                type="text"
+                name="image"
+                defaultValue={food.image}
+                required
+                className="w-full border rounded px-3 py-2"
+              />
+            </div>
 
-          <div>
-            <label className="block font-medium mb-1">Food Category</label>
-            <input
-              type="text"
-              name="category"
-              required
-              defaultValue={food.category}
-              className="w-full border rounded px-3 py-2"
-            />
-          </div>
+            <div>
+              <label className="block font-medium mb-1">Food Category</label>
+              <input
+                type="text"
+                name="category"
+                defaultValue={food.category}
+                required
+                className="w-full border rounded px-3 py-2"
+              />
+            </div>
 
-          <div>
-            <label className="block font-medium mb-1">Quantity</label>
-            <input
-              type="number"
-              name="quantity"
-              required
-              defaultValue={food.quantity}
-              className="w-full border rounded px-3 py-2"
-            />
-          </div>
+            <div>
+              <label className="block font-medium mb-1">Quantity</label>
+              <input
+                type="number"
+                name="quantity"
+                defaultValue={food.quantity}
+                required
+                className="w-full border rounded px-3 py-2"
+              />
+            </div>
 
-          <div>
-            <label className="block font-medium mb-1">Price ($)</label>
-            <input
-              type="number"
-              name="price"
-              defaultValue={food.price}
-              required
-              className="w-full border rounded px-3 py-2"
-            />
-          </div>
+            <div>
+              <label className="block font-medium mb-1">Price ($)</label>
+              <input
+                type="number"
+                name="price"
+                defaultValue={food.price}
+                required
+                className="w-full border rounded px-3 py-2"
+              />
+            </div>
 
-          <div>
-            <label className="block font-medium mb-1">
-              Food Origin (Country)
-            </label>
-            <input
-              type="text"
-              name="origin"
-              defaultValue={food.origin}
-              required
-              className="w-full border rounded px-3 py-2"
-            />
-          </div>
+            <div>
+              <label className="block font-medium mb-1">
+                Food Origin (Country)
+              </label>
+              <input
+                type="text"
+                name="origin"
+                defaultValue={food.origin}
+                required
+                className="w-full border rounded px-3 py-2"
+              />
+            </div>
 
-          <div className="md:col-span-2">
-            <label className="block font-medium mb-1">
-              Food Description (ingredients, procedure)
-            </label>
-            <textarea
-              name="description"
-              defaultValue={food.description}
-              required
-              rows="4"
-              className="w-full border rounded px-3 py-2"
-            />
-          </div>
+            <div className="md:col-span-2">
+              <label className="block font-medium mb-1">Food Description</label>
+              <textarea
+                name="description"
+                defaultValue={food.description}
+                required
+                rows="4"
+                className="w-full border rounded px-3 py-2"
+              />
+            </div>
 
-          <div>
-            <label className="block font-medium mb-1">Added by (Name)</label>
-            <input
-              type="text"
-              name="name"
-              className="w-full border rounded px-3 py-2"
-              value={user.displayName}
-              readOnly
-            />
-          </div>
+            <div>
+              <label className="block font-medium mb-1">Added by (Name)</label>
+              <input
+                type="text"
+                name="username"
+                defaultValue={food.username}
+                readOnly
+                className="w-full border rounded px-3 py-2"
+              />
+            </div>
 
-          <div>
-            <label className="block font-medium mb-1">Added by (Email)</label>
-            <input
-              type="email"
-              name="email"
-              className="w-full border rounded px-3 py-2"
-              value={user.email}
-              readOnly
-            />
-          </div>
+            <div>
+              <label className="block font-medium mb-1">Added by (Email)</label>
+              <input
+                type="email"
+                name="email"
+                defaultValue={food.email}
+                readOnly
+                className="w-full border rounded px-3 py-2"
+              />
+            </div>
 
-          <div className="md:col-span-2">
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 text-black font-semibold py-3 px-6 rounded-xl shadow transition-all hover:scale-105 hover:shadow-lg"
-            >
-              Update Food
-            </button>
-          </div>
-        </form>
+            <div className="md:col-span-2">
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 text-black font-semibold py-3 px-6 rounded-xl shadow transition-all hover:scale-105 hover:shadow-lg"
+              >
+                Update Food
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

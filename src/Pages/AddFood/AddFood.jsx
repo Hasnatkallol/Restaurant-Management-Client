@@ -11,6 +11,7 @@ const AddFood = () => {
     const form = e.target;
     const formData = new FormData(form);
     const newListing = Object.fromEntries(formData.entries());
+    console.log(newListing);
     axios
       .post("http://localhost:4000/foods", newListing)
       .then((res) => {
@@ -112,7 +113,7 @@ const AddFood = () => {
           <label className="block font-medium mb-1">Added by (Name)</label>
           <input
             type="text"
-            name="name"
+            name="username"
             className="w-full border rounded px-3 py-2"
             value={user.displayName}
             readOnly
@@ -135,7 +136,7 @@ const AddFood = () => {
             type="submit"
             className="w-full bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 text-black font-semibold py-3 px-6 rounded-xl shadow transition-all hover:scale-105 hover:shadow-lg"
           >
-            Addd Food
+   Add Food
           </button>
         </div>
       </form>

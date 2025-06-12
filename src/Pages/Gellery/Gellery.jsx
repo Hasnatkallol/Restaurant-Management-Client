@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import gellery from "../../assets/gellery.avif";
 
 const images = [
   { src: "https://i.ibb.co/5XgZcCNg/download.jpg", alt: "Image 1" },
@@ -26,8 +27,7 @@ const Gallery = () => {
 
   const closeModal = () => setIsOpen(false);
 
-  const nextSlide = () =>
-    setCurrentSlide((prev) => (prev + 1) % images.length);
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % images.length);
 
   const prevSlide = () =>
     setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
@@ -43,8 +43,37 @@ const Gallery = () => {
   }, []);
 
   return (
-    <div className="w-11/12 mx-auto py-10">
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+    <div className="">
+      <div
+        className="hero min-h-[40vh] mb-10 relative"
+        style={{ backgroundImage: `url(${gellery})` }}
+      >
+        {/* Dark overlay for better text contrast */}
+        <div className="hero-overlay bg-opacity-70 "></div>
+
+        <div className="hero-content text-center text-neutral-content">
+          <div className="max-w-4xl">
+            {/* Main heading with gradient text */}
+            <h1 className="mb-8 text-5xl md:text-6xl font-bold">
+              <span className=" bg-clip-text text-white">Gellery</span>
+            </h1>
+
+            {/* Decorative divider */}
+            <div className="flex  justify-center items-center my-6">
+              <div className="w-12  h-px bg-white mx-2"></div>
+              <span className="text-white text-xl">✧</span>
+              <div className="w-12 h-px bg-white mx-2"></div>
+            </div>
+
+            {/* Description text */}
+            <p className="mb-12 text-lg md:text-xl text-neutral-content/90">
+              From savory starters to mouthwatering mains and decadent desserts
+              - discover, manage, and enjoy the ultimate food experience.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 w-11/12 mx-auto sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {images.map((img, index) => (
           <div
             key={index}
@@ -103,7 +132,9 @@ const Gallery = () => {
                   alt={img.alt}
                   onClick={() => setCurrentSlide(idx)}
                   className={`cursor-pointer rounded-lg h-16 w-full object-cover transition-opacity duration-300 ${
-                    idx === currentSlide ? "opacity-100 ring-2 ring-white" : "opacity-60"
+                    idx === currentSlide
+                      ? "opacity-100 ring-2 ring-white"
+                      : "opacity-60"
                   } hover:opacity-100`}
                 />
               ))}
