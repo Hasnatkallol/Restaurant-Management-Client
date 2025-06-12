@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 const PurchaseFood = () => {
   const { user } = useContext(FirebaseAuthContext);
-  const { name, quantity, price } = useLoaderData();
+  const { name, image, quantity, price } = useLoaderData();
 
   const getFormattedDateTime = () => {
     const now = new Date();
@@ -24,15 +24,17 @@ const PurchaseFood = () => {
     e.preventDefault();
     const form = e.target;
     const purchasedQty = parseInt(form.quantity.value);
-
+    // console.log(purchasedQty)
     const purchaseData = {
       foodName: name,
+      foodImage: image,
       price: price,
       quantity: purchasedQty,
       buyerName: user.displayName,
       buyerEmail: user.email,
       purchaseDate: getFormattedDateTime(),
     };
+    // console.log(purchaseData)
 
     axios
       .post("http://localhost:4000/purchasefood", purchaseData)
@@ -63,6 +65,15 @@ const PurchaseFood = () => {
             defaultValue={name}
             readOnly
             className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+          />
+        </div>
+        <div>
+          <label className="block font-medium mb-1">Food Image URL</label>
+          <input
+            type="url"
+            defaultValue={image}
+            required
+            className="w-full border rounded px-3 py-2"
           />
         </div>
 
