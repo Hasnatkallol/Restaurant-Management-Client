@@ -131,27 +131,7 @@ const Update = () => {
               />
             </div>
 
-            <div>
-              <label className="block font-medium mb-1">Added by (Name)</label>
-              <input
-                type="text"
-                name="username"
-                defaultValue={food.username}
-                readOnly
-                className="w-full border rounded px-3 py-2"
-              />
-            </div>
-
-            <div>
-              <label className="block font-medium mb-1">Added by (Email)</label>
-              <input
-                type="email"
-                name="email"
-                defaultValue={food.email}
-                readOnly
-                className="w-full border rounded px-3 py-2"
-              />
-            </div>
+        
 
             <div className="md:col-span-2">
               <button

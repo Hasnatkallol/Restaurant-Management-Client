@@ -9,6 +9,7 @@ const PurchaseFood = () => {
   const { user } = useContext(FirebaseAuthContext);
   const { name, image, quantity, price, addBy } = useLoaderData();
 
+
   // const getFormattedDateTime = () => {
   //   const now = new Date();
   //   const year = now.getFullYear();
@@ -28,7 +29,6 @@ const PurchaseFood = () => {
     e.preventDefault();
     const form = e.target;
     const purchasedQty = parseInt(form.quantity.value);
-    console.log(purchasedQty);
 
     const purchaseData = {
       foodName: name,
@@ -119,7 +119,7 @@ const PurchaseFood = () => {
 
         <div>
           <label className="block text-gray-600 font-semibold mb-1">
-            Quantity ( { (quantity === 0) ? 'Not Available' : 'max:' + quantity})
+            Quantity ( {quantity === 0 ? "Not Available" : "max:" + quantity})
           </label>
           <input
             type="number"
@@ -155,10 +155,9 @@ const PurchaseFood = () => {
           />
         </div>
 
-
         <button
           type="submit"
-           disabled={quantity === 0}
+          disabled={quantity === 0}
           className="w-full bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 text-black font-semibold py-3 px-6 rounded-xl shadow transition-all hover:scale-105 hover:shadow-lg"
         >
           Confirm Purchase
