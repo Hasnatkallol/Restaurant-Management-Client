@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Link, useLoaderData } from "react-router";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
+import Swal from "sweetalert2";
 
 const TopDetails = () => {
   const {
@@ -26,6 +27,8 @@ const TopDetails = () => {
       })
       .catch((err) => console.error(err));
   }, [_id]);
+
+
 
   return (
     <div className="max-w-4xl mx-auto p-6 mt-10 bg-gradient-to-br from-white via-slate-50 to-slate-100 shadow-2xl rounded-2xl my-10 transition-all duration-300">

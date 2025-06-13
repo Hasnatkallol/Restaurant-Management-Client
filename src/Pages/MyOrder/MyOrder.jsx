@@ -61,6 +61,7 @@ const MyOrder = () => {
               <th className="px-6 py-4 font-semibold">Name</th>
               <th className="px-6 py-4 font-semibold">Price</th>
               <th className="px-6 py-4 font-semibold">Food Owner</th>
+              <th className="px-6 py-4 font-semibold">Purchase Data and Time</th>
               <th className="px-6 py-4 font-semibold text-center">Actions</th>
             </tr>
           </thead>
@@ -83,6 +84,7 @@ const MyOrder = () => {
                 <td className="px-6 py-4">{order.foodName}</td>
                 <td className="px-6 py-4">${order.price}</td>
                 <td className="px-6 py-4">{order.foodOwnerName}</td>
+                   <td className="px-6 py-4">{order.purchaseDate}</td>
                 <td className="px-6 py-4 text-center space-x-2">
                   <button
                     onClick={() => handleDelete(order._id)}

@@ -3,28 +3,32 @@ import { useLoaderData } from "react-router";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import moment from "moment";
 
 const PurchaseFood = () => {
   const { user } = useContext(FirebaseAuthContext);
   const { name, image, quantity, price, addBy } = useLoaderData();
-  // const foodOwner = addBy.name || 'no name';
 
-  const getFormattedDateTime = () => {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-    const day = String(now.getDate()).padStart(2, "0");
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    const seconds = String(now.getSeconds()).padStart(2, "0");
+  // const getFormattedDateTime = () => {
+  //   const now = new Date();
+  //   const year = now.getFullYear();
+  //   const month = String(now.getMonth() + 1).padStart(2, "0");
+  //   const day = String(now.getDate()).padStart(2, "0");
+  //   const hours = String(now.getHours()).padStart(2, "0");
+  //   const minutes = String(now.getMinutes()).padStart(2, "0");
+  //   const seconds = String(now.getSeconds()).padStart(2, "0");
 
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  };
+  //   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  // };
+
+  const time = moment().format("MMMM Do YYYY, h:mm:ss a");
+  // console.log(time)
 
   const handlePurchase = (e) => {
     e.preventDefault();
     const form = e.target;
     const purchasedQty = parseInt(form.quantity.value);
+    console.log(purchasedQty);
 
     const purchaseData = {
       foodName: name,
@@ -33,10 +37,29 @@ const PurchaseFood = () => {
       quantity: purchasedQty,
       buyerName: user.displayName,
       buyerEmail: user.email,
-      purchaseDate: getFormattedDateTime(),
+      purchaseDate: time,
       foodOwnerName: addBy.name,
     };
-    console.log(purchaseData);
+    if (quantity === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Items is not available!",
+        footer: '<a href="#">Why do I have this issue?</a>',
+      });
+
+      return null;
+    }
+    if (purchasedQty > quantity) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Purchase quantity exceeds available stock",
+        footer: '<a href="#">Why do I have this issue?</a>',
+      });
+
+      return null;
+    }
 
     axios
       .post("http://localhost:4000/purchasefood", purchaseData)
@@ -96,13 +119,12 @@ const PurchaseFood = () => {
 
         <div>
           <label className="block text-gray-600 font-semibold mb-1">
-            Quantity (max: {quantity})
+            Quantity ( { (quantity === 0) ? 'Not Available' : 'max:' + quantity})
           </label>
           <input
             type="number"
             name="quantity"
             min={1}
-            max={quantity}
             required
             placeholder="Enter quantity"
             className="w-full p-3 border border-gray-300 rounded-lg"
@@ -133,8 +155,10 @@ const PurchaseFood = () => {
           />
         </div>
 
+
         <button
           type="submit"
+           disabled={quantity === 0}
           className="w-full bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 text-black font-semibold py-3 px-6 rounded-xl shadow transition-all hover:scale-105 hover:shadow-lg"
         >
           Confirm Purchase
