@@ -81,6 +81,16 @@ const Navbar = () => {
               My Food
             </NavLink>
           </li>
+           <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-[#F3DB89] text-2xl" : "text-white text-2xl"
+              }
+              to={"/myorder"}
+            >
+              My Order
+            </NavLink>
+          </li>
         </>
       )}
 

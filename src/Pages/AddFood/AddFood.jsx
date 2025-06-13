@@ -9,9 +9,21 @@ const AddFood = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const formData = new FormData(form);
-    const newListing = Object.fromEntries(formData.entries());
-    console.log(newListing);
+    const newListing = {
+      name: form.name.value,
+      image: form.image.value,
+      category: form.category.value,
+      quantity: parseInt(form.quantity.value, 10),
+      price: parseFloat(form.price.value),
+      purchaseCount: 0,
+      description: form.description.value,
+      origin: form.origin.value,
+      addBy: {
+        name: user.displayName,
+        email: user.email,
+      },
+    };
+    // console.log(newListing);
     axios
       .post("http://localhost:4000/foods", newListing)
       .then((res) => {
@@ -136,7 +148,7 @@ const AddFood = () => {
             type="submit"
             className="w-full bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 text-black font-semibold py-3 px-6 rounded-xl shadow transition-all hover:scale-105 hover:shadow-lg"
           >
-   Add Food
+            Add Food
           </button>
         </div>
       </form>

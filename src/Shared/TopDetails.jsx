@@ -15,7 +15,8 @@ const TopDetails = () => {
     origin,
     addBy,
   } = useLoaderData();
-  const { user } = useContext(FirebaseAuthContext)
+
+  const { user } = useContext(FirebaseAuthContext);
 
   useEffect(() => {
     fetch(`http://localhost:4000/foods/${_id}`)
@@ -60,7 +61,7 @@ const TopDetails = () => {
               <div>
                 <p className="font-semibold text-gray-600">Purchased</p>
                 <p className="text-blue-600 font-medium">
-                  {purchaseCount} times
+                  {purchaseCount || 0} times
                 </p>
               </div>
             </div>
@@ -69,8 +70,10 @@ const TopDetails = () => {
           <div className="mt-6 flex flex-col gap-4">
             <div className="border-t pt-4">
               <p className="text-sm text-gray-500">Added by:</p>
-              <p className="text-gray-800 font-semibold">{addBy?.name || user.displayName}</p>
-              <p className="text-gray-600">{addBy?.email ||  user.email}</p>
+              <p className="text-gray-800 font-semibold">
+                {addBy?.name || user?.displayName}
+              </p>
+              <p className="text-gray-600">{addBy?.email || user?.email}</p>
             </div>
 
             <Link className="flex items-centers " to={`/purchase/${_id}`}>

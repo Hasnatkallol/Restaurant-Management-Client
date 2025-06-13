@@ -15,6 +15,7 @@ import Gellery from "../Pages/Gellery/Gellery";
 import AddFood from "../Pages/AddFood/AddFood";
 import MyFood from "../Pages/MyFood/MyFood";
 import Update from "../Pages/MyFood/Update";
+import MyOrder from "../Pages/MyOrder/MyOrder";
 
 
 export const router = createBrowserRouter([
@@ -91,6 +92,15 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Update></Update>
+          </PrivateRoute>
+        ),
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+                 {
+        path: "myorder",
+        element: (
+          <PrivateRoute>
+              <MyOrder></MyOrder>
           </PrivateRoute>
         ),
         hydrateFallbackElement: <Loading></Loading>,
