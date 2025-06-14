@@ -5,7 +5,7 @@ import { FaMoon } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import { CiSun } from "react-icons/ci";
 
-const Navbar = () => {
+const Sidenavbr = () => {
   const { user, logOut } = useContext(FirebaseAuthContext);
   const [theme, setTheme] = useState("light");
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -203,4 +203,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Sidenavbr;
