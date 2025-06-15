@@ -3,17 +3,27 @@ import React, { useContext, useEffect, useState } from "react";
 import { FirebaseAuthContext } from "../../Firebase/FirebaseAuthContext";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const MyFood = () => {
   const { user } = useContext(FirebaseAuthContext);
   const [myFood, setMyFood] = useState([]);
+  const [errmsg, setErrmsg ] = useState('')
   useEffect(() => {
+    setErrmsg('')
     if (user?.email) {
       const email = user.email;
-      fetch(`http://localhost:4000/foods?email=${email}`)
-        .then((res) => res.json())
-        .then((data) => setMyFood(data))
-        .catch((error) => console.error("Failed to fetch listings:", error));
+      axios
+        .get(`http://localhost:4000/foods?email=${email}`,{withCredentials:true})
+        .then((response) => {
+          setMyFood(response.data);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch listings:", error);
+          setErrmsg(error.response.data.message)
+        });
+
+ 
     }
   }, [user.email]);
   const handleDelete = (_id) => {
@@ -109,8 +119,17 @@ const MyFood = () => {
                 </td>
               </tr>
             )}
+ 
           </tbody>
+          
         </table>
+                   {
+              errmsg ? <p className="text-red-500 text-center pb-5 text-2xl">
+                {
+                  errmsg
+                }
+              </p> : undefined
+            }
       </div>
     </div>
   );

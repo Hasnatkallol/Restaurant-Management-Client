@@ -2,8 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link, NavLink, useNavigate, useLocation } from "react-router";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
 import { FaMoon } from "react-icons/fa";
-import { Tooltip } from "react-tooltip";
 import { CiSun } from "react-icons/ci";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const { user, logOut } = useContext(FirebaseAuthContext);
@@ -14,13 +14,11 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Auto-close dropdowns on route change
   useEffect(() => {
     setDropdownOpen(false);
     setUserDropdownOpen(false);
   }, [location.pathname]);
 
-  // Theme toggle
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
@@ -40,7 +38,7 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-[#F3DB89] text-2xl" : "text-white text-2xl"
+            isActive ? "text-accent text-2xl" : "text-base-content text-2xl"
           }
           to="/"
         >
@@ -50,7 +48,7 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-[#F3DB89] text-2xl" : "text-white text-2xl"
+            isActive ? "text-accent text-2xl" : "text-base-content text-2xl"
           }
           to="/allfoods"
         >
@@ -60,30 +58,29 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-[#F3DB89] text-2xl" : "text-white text-2xl"
+            isActive ? "text-accent text-2xl" : "text-base-content text-2xl"
           }
           to="/gellery"
         >
           Gellery
         </NavLink>
       </li>
-      {user && <></>}
-      <button onClick={toggleTheme} className="my-2 mx-2">
+      <button onClick={toggleTheme} className="my-2 mx-2 hidden lg:block">
         {theme === "light" ? <FaMoon size={30} /> : <CiSun size={30} />}
       </button>
     </>
   );
 
   return (
-    <div className="bg-[#403F2B] sticky top-0 z-40">
+    <div className="bg-base-200 sticky top-0 z-40 shadow-md">
       <div className="w-11/12 mx-auto">
-        <div className="navbar">
+        <div className="flex flex-1 items-center py-2  justify-between">
           {/* Mobile Dropdown */}
-          <div className="navbar-start">
+          <div className="navbar-start ">
             <div className="dropdown relative">
               <div
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="mr-3 lg:hidden cursor-pointer"
+                className="mr-3 lg:hidden cursor-pointer flex items-center"
               >
                 {dropdownOpen ? (
                   <svg
@@ -117,16 +114,19 @@ const Navbar = () => {
                   </svg>
                 )}
               </div>
+
               {dropdownOpen && (
-                <div className="absolute top-10 left-0 w-60 bg-[#403F2B] rounded-box shadow z-50 p-4">
+                <div className="absolute top-11 left-0 w-60 bg-base-200 rounded-b-2xl shadow z-50 p-4">
                   <ul onClick={() => setDropdownOpen(false)}>{links}</ul>
                 </div>
               )}
             </div>
 
-            <h1 className="text-[#F3F1C4] text-xl lg:text-2xl">
-              <i>RestroFlow</i>
-            </h1>
+            <div className="">
+              <h1 className="text-accent text-xl lg:text-2xl hidden lg:block font-semibold">
+                <i>RestroFlow</i>
+              </h1>
+            </div>
           </div>
 
           {/* Desktop Nav */}
@@ -134,19 +134,29 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
 
-          {/* Right Side: Auth & Avatar */}
-          <div className="navbar-end">
+          <div className=" flex items-center gap-2">
+            <div>
+                <button onClick={toggleTheme} className="my-2 mx-2 lg:hidden block">
+        {theme === "light" ? <FaMoon size={20} /> : <CiSun size={20} />}
+      </button>
+            </div>
+            <h1 className="text-accent text-xl lg:text-2xl lg:hidden font-semibold">
+              <i>RestroFlow</i>
+            </h1>
+          </div>
+
+          {/* Auth & Avatar */}
+          <div className="navbar-end  ">
             <div className="flex items-center space-x-4">
               {!user ? (
                 <NavLink
                   to="/login"
-                  className="bg-[#F3DB89] btn px-8 py-1 text-2xl border-none rounded-4xl text-[#403F2B] hover:bg-[#403F2B] hover:text-[#F3DB89]"
+                  className="btn bg-accent text-base-200 text-xl px-6 border-none hover:bg-base-200 hover:text-accent"
                 >
                   Login
                 </NavLink>
               ) : (
                 <>
-                  {/* Avatar Dropdown */}
                   <div className="relative dropdown-end">
                     <div
                       role="button"
@@ -168,7 +178,7 @@ const Navbar = () => {
                     {userDropdownOpen && (
                       <ul
                         tabIndex={0}
-                        className="absolute right-0 mt-3 w-52 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box z-50"
+                        className="absolute right-0 mt-3 w-32 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box items-center z-50"
                         onClick={() => setUserDropdownOpen(false)}
                       >
                         <li>
@@ -177,13 +187,13 @@ const Navbar = () => {
                         <li>
                           <Link to="/myfood">My Food</Link>
                         </li>
-                          <li>
+                        <li>
                           <Link to="/myorder">My Order</Link>
                         </li>
-                        <li className="">
+                        <li>
                           <button
                             onClick={handleLogout}
-                            className="bg-red-500 lg:btn w-[50%] items-center py-1 border-none rounded-4xl text-white hover:bg-red-500 hover:text-black"
+                            className="btn bg-error my-1 h-8 text-white hover:bg-error/80"
                           >
                             Logout
                           </button>
@@ -191,7 +201,6 @@ const Navbar = () => {
                       </ul>
                     )}
                   </div>
-
                   <Tooltip id="my-tooltip" />
                 </>
               )}

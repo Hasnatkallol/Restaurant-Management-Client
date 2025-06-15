@@ -10,18 +10,52 @@
   themes: light --default;
 }
 
-/* @plugin "daisyui/theme" {
+@plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #ffffff;
-  --color-secondary: teal;
-  --color-base-100: #ec7063;
+  --color-primary: #fff9f5;       /* Soft warm white (reduced glare) */
+  --color-secondary: #e67e22;     /* Vibrant pumpkin orange (CTA buttons) */
+  --color-accent: #d35400;        /* Deep burnt orange (hover states) */
+  --color-neutral: #f8e5d0;       /* Light peach (sidebar, subtle contrast) */
+  --color-base-100: #ffffff;      /* Clean white (cards, content areas) */
+  --color-base-content: #2c3e50;  /* Dark blue-gray (high readability) */
+  --color-info: #3b82f6;          /* Bright blue (info alerts) */
+  --color-success: #10b981;       /* Fresh green (success messages) */
+  --color-warning: #f59e0b;       /* Golden yellow (warnings) */
+  --color-error: #ef4444;         /* Bold red (errors, destructive actions) */
 }
 
 @plugin "daisyui/theme" {
   name: "dark";
   color-scheme: dark;
-  --color-primary: #2c3e50;
-  --color-secondary: teal;
-  --color-base-100: #28b463;
-} */
+  --color-primary: #1e1e1e;       /* Deep charcoal (main background) */
+  --color-secondary: #f97316;     /* Bright orange (primary actions) */
+  --color-accent: #ea580c;        /* Darker orange (secondary accents) */
+  --color-neutral: #2a2a2a;       /* Soft dark gray (sidebar) */
+  --color-base-100: #252525;      /* Slightly lighter content areas */
+  --color-base-content: #f3f4f6;  /* Off-white text (high contrast) */
+  --color-info: #60a5fa;          /* Soft blue (info) */
+  --color-success: #34d399;       /* Mint green (success) */
+  --color-warning: #fbbf24;       /* Warm yellow (warnings) */
+  --color-error: #f87171;         /* Coral red (errors) */
+}
+
+
+
+
+
+ /* @plugin "daisyui/theme" {
+  name: "dark";
+  color-scheme: dark;
+
+  --color-primary: #60a5fa;       
+  --color-secondary: #34d399;     
+  --color-accent: #facc15;        
+  --color-neutral: #f3f4f6;       
+  --color-base-100: #1f2937;      
+  --color-info: #38bdf8;
+  --color-success: #4ade80;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+}  */
+

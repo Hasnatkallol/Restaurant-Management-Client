@@ -19,6 +19,9 @@ const images = [
 const Gallery = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+   useEffect(() => {
+    document.title = "Gellery";
+  }, []);
 
   const openModal = (index) => {
     setCurrentSlide(index);
@@ -44,35 +47,37 @@ const Gallery = () => {
 
   return (
     <div className="">
-      <div
-        className="hero min-h-[40vh] mb-10 relative"
-        style={{ backgroundImage: `url(${gellery})` }}
-      >
-        {/* Dark overlay for better text contrast */}
-        <div className="hero-overlay bg-opacity-70 "></div>
-
-        <div className="hero-content text-center text-neutral-content">
-          <div className="max-w-4xl">
-            {/* Main heading with gradient text */}
-            <h1 className="mb-8 text-5xl md:text-6xl font-bold">
-              <span className=" bg-clip-text text-white">Gellery</span>
-            </h1>
-
-            {/* Decorative divider */}
-            <div className="flex  justify-center items-center my-6">
-              <div className="w-12  h-px bg-white mx-2"></div>
-              <span className="text-white text-xl">✧</span>
-              <div className="w-12 h-px bg-white mx-2"></div>
-            </div>
-
-            {/* Description text */}
-            <p className="mb-12 text-lg md:text-xl text-neutral-content/90">
-              From savory starters to mouthwatering mains and decadent desserts
-              - discover, manage, and enjoy the ultimate food experience.
-            </p>
-          </div>
-        </div>
-      </div>
+     <div
+             className="hero min-h-[40vh] mb-5 relative"
+             style={{
+               backgroundImage: `url(${gellery})`,
+               backgroundSize: "cover",
+               backgroundPosition: "center",
+             }}
+           >
+             {/* Black overlay */}
+             <div className="absolute h-full w-full  bg-black/60 "></div>
+     
+             {/* Content on top of overlay */}
+             <div className="hero-content text-center text-white relative z-10">
+               <div className="max-w-4xl">
+                 <h1 className="mb-6 text-5xl md:text-6xl font-extrabold text-white ">
+                   All Foods
+                 </h1>
+     
+                 <div className="flex justify-center items-center my-6">
+                   <div className="w-12 h-px bg-yellow-300 mx-2"></div>
+                   <span className="text-yellow-400 text-xl">✧</span>
+                   <div className="w-12 h-px bg-yellow-300 mx-2"></div>
+                 </div>
+     
+                 <p className="mb-12 text-lg md:text-xl text-orange-100 [text-shadow:1px_1px_6px_black]">
+                   From savory starters to mouthwatering mains and decadent desserts
+                   – discover, manage, and enjoy the ultimate food experience.
+                 </p>
+               </div>
+             </div>
+           </div>
       <div className="grid grid-cols-2 w-11/12 mx-auto sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {images.map((img, index) => (
           <div

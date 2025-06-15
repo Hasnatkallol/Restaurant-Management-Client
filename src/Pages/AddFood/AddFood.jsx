@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FirebaseAuthContext } from "../../Firebase/FirebaseAuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 const AddFood = () => {
   const { user } = useContext(FirebaseAuthContext);
+  const [errmsg, setErrmsg] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ const AddFood = () => {
     };
     // console.log(newListing);
     axios
-      .post("http://localhost:4000/foods", newListing)
+      .post(`http://localhost:4000/foods?email=${user.email}`, newListing)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({
@@ -35,7 +36,7 @@ const AddFood = () => {
           });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setErrmsg(error.response.data.message));
   };
 
   return (
@@ -152,6 +153,9 @@ const AddFood = () => {
           </button>
         </div>
       </form>
+      {errmsg ? (
+        <p className="text-red-500 text-center pb-5 text-2xl">{errmsg}</p>
+      ) : undefined}
     </div>
   );
 };

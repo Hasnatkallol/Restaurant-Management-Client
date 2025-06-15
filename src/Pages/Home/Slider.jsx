@@ -37,7 +37,7 @@ const Slider = () => {
   const [swiperInstance, setSwiperInstance] = useState(null);
 
   return (
-    <div className="py-10 bg-[#403F2B]">
+    <div className="pb-10">
       <div
         onMouseEnter={() => swiperInstance && swiperInstance.autoplay.stop()}
         onMouseLeave={() => swiperInstance && swiperInstance.autoplay.start()}
@@ -68,7 +68,7 @@ const Slider = () => {
                   <p className="mb-6 text-lg">{description}</p>
                   <Link
                     to="/allfoods"
-                    className="bg-[#F3DB89] btn px-8 py-1 text-2xl border-none rounded-4xl text-[#403F2B] hover:bg-[#403F2B] hover:text-[#F3DB89]"
+                    className="btn bg-accent text-base-200 text-xl px-8 py-2 border-none hover:bg-base-200 hover:text-accent"
                   >
                     View All Foods
                   </Link>

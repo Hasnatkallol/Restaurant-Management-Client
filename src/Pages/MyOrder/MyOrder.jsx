@@ -1,13 +1,24 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
+import { FirebaseAuthContext } from "../../Firebase/FirebaseAuthContext";
 
 const MyOrder = () => {
+
   const [myOrder, setMyOrder] = useState([]);
+  // const [errmsg, setErrmsg] = useState("");
+
   useEffect(() => {
-    fetch(`http://localhost:4000/purchasefood`)
-      .then((res) => res.json())
-      .then((data) => setMyOrder(data));
+ 
+    axios
+      .get("http://localhost:4000/purchasefood")
+      .then((response) => {
+        setMyOrder(response.data);
+      })
+      .catch((error) => {
+        console.log(error)
+      });
   }, []);
   console.log(myOrder);
 
@@ -61,7 +72,9 @@ const MyOrder = () => {
               <th className="px-6 py-4 font-semibold">Name</th>
               <th className="px-6 py-4 font-semibold">Price</th>
               <th className="px-6 py-4 font-semibold">Food Owner</th>
-              <th className="px-6 py-4 font-semibold">Purchase Data and Time</th>
+              <th className="px-6 py-4 font-semibold">
+                Purchase Data and Time
+              </th>
               <th className="px-6 py-4 font-semibold text-center">Actions</th>
             </tr>
           </thead>
@@ -84,7 +97,7 @@ const MyOrder = () => {
                 <td className="px-6 py-4">{order.foodName}</td>
                 <td className="px-6 py-4">${order.price}</td>
                 <td className="px-6 py-4">{order.foodOwnerName}</td>
-                   <td className="px-6 py-4">{order.purchaseDate}</td>
+                <td className="px-6 py-4">{order.purchaseDate}</td>
                 <td className="px-6 py-4 text-center space-x-2">
                   <button
                     onClick={() => handleDelete(order._id)}
@@ -104,6 +117,7 @@ const MyOrder = () => {
             )}
           </tbody>
         </table>
+   
       </div>
     </div>
   );

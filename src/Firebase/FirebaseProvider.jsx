@@ -9,6 +9,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "./firebase.init";
+import axios from "axios";
 
 const FirebaseProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -39,7 +40,41 @@ const FirebaseProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log(currentUser);
       setUser(currentUser);
-      setLoading(false);
+      if (currentUser?.email) {
+        const userInfo = { email: currentUser?.email };
+        console.log(userInfo);
+        try {
+          const fetchData = async () => {
+            const res = await axios.post(
+              "http://localhost:4000/create-token",
+              userInfo,
+              { withCredentials: true }
+            );
+            const data = await res?.data;
+            console.log("Create token response from server:", data);
+            setLoading(false);
+          };
+          fetchData();
+        } catch (err) {
+          console.error(err);
+          // toast.error(err?.message);
+        }
+      } else {
+        try {
+          const fetchData = async () => {
+            const res = await axios.post("http://localhost:4000/logout");
+            const data = await res?.data;
+            // console.log('Logout response from server:', data);
+            setLoading(false);
+          };
+          fetchData();
+        } catch (err) {
+          console.error(err);
+          // toast.error(err?.message);
+        }
+      }
+
+      // setLoading(false);
     });
     return () => {
       unsubscribe();

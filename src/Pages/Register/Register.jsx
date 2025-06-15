@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
+import animation from "../../assets/Register/register.json";
 
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import { FirebaseAuthContext } from "../../Firebase/FirebaseAuthContext";
+import Lottie from "lottie-react";
 
 const Register = () => {
   useEffect(() => {
@@ -97,75 +99,97 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <div className="w-11/12 mx-auto my-10 card bg-base-200 max-w-sm shrink-0 shadow-2xl">
-        <div className="card-body">
-          <h1 className="text-black font-semibold text-center text-2xl">
-            Register Your Account
-          </h1>
-          <form onSubmit={handleRegister} className="fieldset">
+  <div className="w-11/12 mx-auto flex flex-col md:flex-row items-center justify-center  gap-6">
+  
+  <div className="w-full md:w-1/2 flex justify-center">
+    <div className=" w-full max-w-md p-6 rounded-lg shadow-lg">
+      <div className="card-body">
+        <h1 className="text-black font-semibold text-center text-2xl mb-4">
+          Register Your Account
+        </h1>
+        <form onSubmit={handleRegister} className="space-y-4">
+          <div>
             <label className="label">Name</label>
             <input
               name="name"
               type="text"
-              className="input"
+              className="input w-full"
               placeholder="Name"
               required
             />
+          </div>
+          <div>
             <label className="label">Photo URL</label>
             <input
               name="photo"
               type="text"
-              className="input"
+              className="input w-full"
               placeholder="Photo link"
               required
             />
+          </div>
+          <div>
             <label className="label">Email</label>
             <input
               name="email"
               type="email"
-              className="input"
+              className="input w-full"
               placeholder="Email"
               required
             />
+          </div>
+          <div>
             <label className="label">Password</label>
             <input
               name="password"
               type="password"
-              className="input"
+              className="input w-full"
               placeholder="Password"
               required
             />
-
-            <button type="submit" className="btn btn-neutral mt-4">
-              Register
-            </button>
-
-            {/* You can keep these for fallback */}
-            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-            {successMessage && (
-              <p className="text-green-500">Successfully Signed Up</p>
-            )}
-          </form>
-          <div>
-            <button
-              onClick={singInGoogle}
-              className="btn w-full btn-outline mt-4"
-            >
-              <FcGoogle size={24} />
-              Sign Up With Google
-            </button>
           </div>
-          <h1 className="text-black font-semibold text-center mt-4">
-            Already have an account?{" "}
-            <Link className="text-red-600" to={"/login"}>
-              Login
-            </Link>
-          </h1>
+
+          <button type="submit" className="btn bg-[#161A20] text-white w-full mt-2">
+            Register
+          </button>
+
+          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+          {successMessage && (
+            <p className="text-green-500">Successfully Signed Up</p>
+          )}
+        </form>
+
+        <div className="mt-4">
+          <button
+            onClick={singInGoogle}
+            className="btn w-full btn-outline flex items-center justify-center gap-2"
+          >
+            <FcGoogle size={24} />
+            Sign Up With Google
+          </button>
         </div>
+
+        <h1 className="text-black font-semibold text-center mt-4">
+          Already have an account?{" "}
+          <Link className="text-red-600" to={"/login"}>
+            Login
+          </Link>
+        </h1>
       </div>
     </div>
+  </div>
+
+  <div className="w-full md:w-1/2 flex justify-center items-center">
+    <Lottie
+      animationData={animation}
+      loop={true}
+      className="w-full hidden md:block max-w-md"
+    />
+  </div>
+</div>
   );
 };
 
 export default Register;
+
+

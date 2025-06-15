@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Banner from "./Banner";
 import Slider from "./Slider";
 
@@ -8,6 +8,9 @@ import TopPurchase from "./TopPurchase";
 // import ThemeToggle from "../../Shared/ThemeToggle (1)";
 
 const Home = () => {
+    useEffect(() => {
+      document.title = "Home";
+    }, []);
   return (
     <div className="">
       <Banner></Banner>
