@@ -20,7 +20,7 @@ const Gallery = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   useEffect(() => {
-    document.title = "Gellery";
+    document.title = "Gallery";
   }, []);
 
   const openModal = (index) => {
@@ -62,7 +62,7 @@ const Gallery = () => {
         <div className="hero-content text-center text-white relative z-10">
           <div className="max-w-4xl">
             <h1 className="mb-6 text-5xl md:text-6xl font-extrabold text-white ">
-              Gellery
+              Gallery
             </h1>
 
             <div className="flex justify-center items-center my-6">

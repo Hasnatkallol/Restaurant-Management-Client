@@ -62,7 +62,7 @@ const Navbar = () => {
           }
           to="/gellery"
         >
-          Gellery
+          Gallery
         </NavLink>
       </li>
       <button onClick={toggleTheme} className="my-2 mx-2 hidden lg:block">
@@ -136,9 +136,12 @@ const Navbar = () => {
 
           <div className=" flex items-center gap-2">
             <div>
-                <button onClick={toggleTheme} className="my-2 mx-2 lg:hidden block">
-        {theme === "light" ? <FaMoon size={20} /> : <CiSun size={20} />}
-      </button>
+              <button
+                onClick={toggleTheme}
+                className="my-2 mx-2 lg:hidden block"
+              >
+                {theme === "light" ? <FaMoon size={20} /> : <CiSun size={20} />}
+              </button>
             </div>
             <h1 className="text-accent text-xl lg:text-2xl lg:hidden font-semibold">
               <i>RestroFlow</i>
