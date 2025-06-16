@@ -9,20 +9,7 @@ const PurchaseFood = () => {
   const { user } = useContext(FirebaseAuthContext);
   const { name, image, quantity, price, addBy } = useLoaderData();
 
-  // const getFormattedDateTime = () => {
-  //   const now = new Date();
-  //   const year = now.getFullYear();
-  //   const month = String(now.getMonth() + 1).padStart(2, "0");
-  //   const day = String(now.getDate()).padStart(2, "0");
-  //   const hours = String(now.getHours()).padStart(2, "0");
-  //   const minutes = String(now.getMinutes()).padStart(2, "0");
-  //   const seconds = String(now.getSeconds()).padStart(2, "0");
-
-  //   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  // };
-
   const time = moment().format("MMMM Do YYYY, h:mm:ss a");
-  // console.log(time)
 
   const handlePurchase = (e) => {
     e.preventDefault();
@@ -39,7 +26,7 @@ const PurchaseFood = () => {
       purchaseDate: time,
       foodOwnerName: addBy.name,
     };
-    if (quantity === 0) {
+    if (quantity == 0) {
       Swal.fire({
         icon: "error",
         title: "Oops...",

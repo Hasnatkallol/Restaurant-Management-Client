@@ -46,7 +46,7 @@ const Gallery = () => {
   }, []);
 
   return (
-    <div className="">
+    <div className="mb-2">
       <div
         className="hero min-h-[40vh] mb-5 relative"
         style={{
@@ -55,10 +55,10 @@ const Gallery = () => {
           backgroundPosition: "center",
         }}
       >
-        {/* Black overlay */}
+   
         <div className="absolute h-full w-full  bg-black/60 "></div>
 
-        {/* Content on top of overlay */}
+      
         <div className="hero-content text-center text-white relative z-10">
           <div className="max-w-4xl">
             <h1 className="mb-6 text-5xl md:text-6xl font-extrabold text-white ">
