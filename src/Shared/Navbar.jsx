@@ -151,7 +151,7 @@ const Navbar = () => {
               {!user ? (
                 <NavLink
                   to="/login"
-                  className="btn bg-accent text-base-200 text-xl px-6 border-none hover:bg-base-200 hover:text-accent"
+                  className="rounded-[5px] bg-accent text-base-200 text-sxl lg:text-xl px-2 py-0.5 lg:py-1  lg:px-6 border-none hover:bg-base-200 hover:text-accent"
                 >
                   Login
                 </NavLink>

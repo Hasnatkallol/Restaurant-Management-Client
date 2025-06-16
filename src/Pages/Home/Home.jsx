@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <div className="">
       <Banner></Banner>
-      {/* <ThemeToggle></ThemeToggle> */}
+   
       <Slider></Slider>
       <TopPurchase></TopPurchase>
       <CustomerFeedback></CustomerFeedback>
