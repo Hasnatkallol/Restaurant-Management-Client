@@ -24,9 +24,11 @@ const AddFood = () => {
         email: user.email,
       },
     };
-    // console.log(newListing);
+
     axios
-      .post(`http://localhost:4000/foods?email=${user.email}`, newListing)
+      .post(
+        `https://reasturent-management-server.vercel.app/foods?email=${user.email}`, newListing,{ withCredentials: true},
+      )
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({
@@ -36,7 +38,7 @@ const AddFood = () => {
           });
         }
       })
-      .catch((error) => setErrmsg(error.response.data.message));
+      .catch((error) => setErrmsg(error?.response?.data?.message));
   };
 
   return (

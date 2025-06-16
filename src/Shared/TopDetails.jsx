@@ -21,14 +21,13 @@ const TopDetails = () => {
   console.log("user", user);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/foods/${_id}`)
+    fetch(`https://reasturent-management-server.vercel.app/foods/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched food item:", data);
       })
       .catch((err) => console.error(err));
   }, [_id]);
- 
 
   const userEmail = user?.email;
   console.log("user", userEmail);

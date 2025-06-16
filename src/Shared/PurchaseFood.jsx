@@ -9,7 +9,6 @@ const PurchaseFood = () => {
   const { user } = useContext(FirebaseAuthContext);
   const { name, image, quantity, price, addBy } = useLoaderData();
 
-
   // const getFormattedDateTime = () => {
   //   const now = new Date();
   //   const year = now.getFullYear();
@@ -62,7 +61,10 @@ const PurchaseFood = () => {
     }
 
     axios
-      .post("http://localhost:4000/purchasefood", purchaseData)
+      .post(
+        "https://reasturent-management-server.vercel.app/purchasefood",
+        purchaseData
+      )
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({

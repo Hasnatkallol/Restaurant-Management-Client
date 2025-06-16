@@ -9,7 +9,7 @@
 //   console.log(searchQuery);
 
 //   useEffect(() => {
-//     fetch(`http://localhost:4000/foods?search=${searchQuery}`)
+//     fetch(`https://reasturent-management-server.vercel.app/foods?search=${searchQuery}`)
 //       .then((res) => res.json())
 //       .then((data) => setFoods(data));
 //   }, [searchQuery]);
@@ -74,11 +74,13 @@ const AllFoods = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:4000/allfoods?search=${searchQuery}`)
+    fetch(
+      `https://reasturent-management-server.vercel.app/allfoods?search=${searchQuery}`
+    )
       .then((res) => res.json())
       .then((data) => setFoods(data));
   }, [searchQuery]);
-   useEffect(() => {
+  useEffect(() => {
     document.title = "All Foods";
   }, []);
 
@@ -87,9 +89,6 @@ const AllFoods = () => {
       {" "}
       {/* Added base background color */}
       {/* Hero Section */}
-
-
-
       <div
         className="hero min-h-[40vh] relative"
         style={{
@@ -121,10 +120,6 @@ const AllFoods = () => {
           </div>
         </div>
       </div>
-
-
-
-
       {/* Search Section */}
       <div className="w-11/12 mx-auto py-10 lg:py-15 flex flex-col items-center bg-base-100">
         {" "}

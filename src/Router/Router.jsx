@@ -17,7 +17,6 @@ import MyFood from "../Pages/MyFood/MyFood";
 import Update from "../Pages/MyFood/Update";
 import MyOrder from "../Pages/MyOrder/MyOrder";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -52,14 +51,18 @@ export const router = createBrowserRouter([
       {
         path: "foods/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:4000/foods/${params.id}`),
+          fetch(
+            `https://reasturent-management-server.vercel.app/foods/${params.id}`
+          ),
         Component: TopDetails,
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "purchase/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:4000/foods/${params.id}`),
+          fetch(
+            `https://reasturent-management-server.vercel.app/foods/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <PurchaseFood></PurchaseFood>
@@ -76,19 +79,21 @@ export const router = createBrowserRouter([
         ),
         hydrateFallbackElement: <Loading></Loading>,
       },
-           {
+      {
         path: "myfood",
         element: (
           <PrivateRoute>
-              <MyFood></MyFood>
+            <MyFood></MyFood>
           </PrivateRoute>
         ),
         hydrateFallbackElement: <Loading></Loading>,
       },
-            {
+      {
         path: "update/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:4000/foods/${params.id}`),
+          fetch(
+            `https://reasturent-management-server.vercel.app/foods/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <Update></Update>
@@ -96,11 +101,11 @@ export const router = createBrowserRouter([
         ),
         hydrateFallbackElement: <Loading></Loading>,
       },
-                 {
+      {
         path: "myorder",
         element: (
           <PrivateRoute>
-              <MyOrder></MyOrder>
+            <MyOrder></MyOrder>
           </PrivateRoute>
         ),
         hydrateFallbackElement: <Loading></Loading>,

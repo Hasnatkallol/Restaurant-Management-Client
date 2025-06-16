@@ -1,25 +1,29 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { FirebaseAuthContext } from "../../Firebase/FirebaseAuthContext";
 
 const MyOrder = () => {
-
   const [myOrder, setMyOrder] = useState([]);
-  // const [errmsg, setErrmsg] = useState("");
+  const { user } = useContext(FirebaseAuthContext);
+  const [errmsg, setErrmsg] = useState("");
 
   useEffect(() => {
- 
+    setErrmsg("");
     axios
-      .get("http://localhost:4000/purchasefood")
+      .get(
+        `https://reasturent-management-server.vercel.app/purchasefood?email=${user.email}`,
+        { withCredentials: true }
+      )
       .then((response) => {
         setMyOrder(response.data);
       })
       .catch((error) => {
-        console.log(error)
+        console.error("Failed to fetch listings:", error);
+        setErrmsg(error.response.data.message);
       });
-  }, []);
+  }, [user.email]);
   console.log(myOrder);
 
   const handleDelete = (_id) => {
@@ -33,13 +37,15 @@ const MyOrder = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/purchasefood/${_id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
+        axios
+          .delete(
+            `https://reasturent-management-server.vercel.app/purchasefood/${_id}?email=${user.email}`,
+            { withCredentials: true }
+          )
+
           .then((data) => {
             console.log(data.deletedCount);
-            if (data.deletedCount) {
+            if (data.data.deletedCount) {
               Swal.fire({
                 title: "Deleted!",
                 text: "Deleted Successfully .",
@@ -51,6 +57,10 @@ const MyOrder = () => {
               );
               setMyOrder(remainingFood);
             }
+          })
+          .catch((error) => {
+            console.error("Failed to fetch listings:", error);
+            setErrmsg(error.response.data.message);
           });
       }
     });
@@ -117,8 +127,10 @@ const MyOrder = () => {
             )}
           </tbody>
         </table>
-   
       </div>
+          {errmsg ? (
+          <p className="text-red-500 text-center pb-5 text-2xl">{errmsg}</p>
+        ) : undefined}
     </div>
   );
 };

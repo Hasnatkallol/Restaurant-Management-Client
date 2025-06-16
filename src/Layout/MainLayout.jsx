@@ -7,11 +7,11 @@ import Sidenavbar from "../Shared/Sidenavbar";
 const MainLayout = () => {
   return (
     <div>
-      {/* <Sidenavbar></Sidenavbar> */}
+  
       <Navbar></Navbar>
 
-      {/* <div className="min-h-[calc(100vh-500px)]"> */}
-      <div>
+      <div className="min-h-[calc(100vh-463px)]">
+     
         <main>
           <Outlet></Outlet>
         </main>

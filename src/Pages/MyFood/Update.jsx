@@ -1,10 +1,13 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext } from "react";
 
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
+import { FirebaseAuthContext } from "../../Firebase/FirebaseAuthContext";
 
 const Update = () => {
   const food = useLoaderData();
+  const { user } = useContext(FirebaseAuthContext);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -12,17 +15,14 @@ const Update = () => {
     const formData = new FormData(form);
     const newListing = Object.fromEntries(formData.entries());
     console.log(newListing);
+    axios
+      .put(
+        `https://reasturent-management-server.vercel.app/foods/${food._id}?email=${user.email}`,newListing,
+        { withCredentials: true }
+      )
 
-    fetch(`http://localhost:4000/foods/${food._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newListing),
-    })
-      .then((res) => res.json())
       .then((data) => {
-        if (data.modifiedCount) {
+        if (data.data.modifiedCount) {
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -130,8 +130,6 @@ const Update = () => {
                 className="w-full border rounded px-3 py-2"
               />
             </div>
-
-        
 
             <div className="md:col-span-2">
               <button

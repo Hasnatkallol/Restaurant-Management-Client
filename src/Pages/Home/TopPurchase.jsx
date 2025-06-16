@@ -6,7 +6,7 @@
 //   const [topFoods, setTopFoods] = useState([]);
 
 //   useEffect(() => {
-//     fetch(`http://localhost:4000/top-foods`)
+//     fetch(`https://reasturent-management-server.vercel.app/top-foods`)
 //       .then((res) => res.json())
 //       .then((data) => setTopFoods(data));
 //   }, [setTopFoods]);
@@ -44,7 +44,6 @@
 
 // export default TopPurchase;
 
-
 import React, { useEffect, useState } from "react";
 import TopPurchaseCard from "./TopPurchaseCard";
 import { Link } from "react-router";
@@ -53,7 +52,7 @@ const TopPurchase = () => {
   const [topFoods, setTopFoods] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/top-foods`)
+    fetch(`https://reasturent-management-server.vercel.app/top-foods`)
       .then((res) => res.json())
       .then((data) => setTopFoods(data));
   }, []);
@@ -89,4 +88,3 @@ const TopPurchase = () => {
 };
 
 export default TopPurchase;
-

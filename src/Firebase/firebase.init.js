@@ -1,22 +1,4 @@
-// // Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
-// import { getAuth } from "firebase/auth";
-// // TODO: Add SDKs for Firebase products that you want to use
-// // https://firebase.google.com/docs/web/setup#available-libraries
 
-// // Your web app's Firebase configuration
-// const firebaseConfig = {
-//   apiKey: "AIzaSyD8LvszczQoXgpzhlBxpYRHICC2YawlR4w",
-//   authDomain: "reasturent-management.firebaseapp.com",
-//   projectId: "reasturent-management",
-//   storageBucket: "reasturent-management.firebasestorage.app",
-//   messagingSenderId: "345170073083",
-//   appId: "1:345170073083:web:acc7b2884d645a2266275e",
-// };
-
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// export const auth = getAuth(app);
 
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";

@@ -8,25 +8,27 @@ import axios from "axios";
 const MyFood = () => {
   const { user } = useContext(FirebaseAuthContext);
   const [myFood, setMyFood] = useState([]);
-  const [errmsg, setErrmsg ] = useState('')
+  const [errmsg, setErrmsg] = useState("");
   useEffect(() => {
-    setErrmsg('')
+    setErrmsg("");
     if (user?.email) {
       const email = user.email;
       axios
-        .get(`http://localhost:4000/foods?email=${email}`,{withCredentials:true})
+        .get(
+          `https://reasturent-management-server.vercel.app/foods?email=${email}`,
+          { withCredentials: true }
+        )
         .then((response) => {
           setMyFood(response.data);
         })
         .catch((error) => {
           console.error("Failed to fetch listings:", error);
-          setErrmsg(error.response.data.message)
+          setErrmsg(error.response.data.message);
         });
-
- 
     }
   }, [user.email]);
   const handleDelete = (_id) => {
+    setErrmsg("");
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -37,16 +39,17 @@ const MyFood = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/foods/${_id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
+        axios
+          .delete(
+            `https://reasturent-management-server.vercel.app/foods/${_id}?email=${user.email}`,
+            { withCredentials: true }
+          )
+
           .then((data) => {
-            console.log(data.deletedCount);
-            if (data.deletedCount) {
+            if (data.data.deletedCount) {
               Swal.fire({
                 title: "Deleted!",
-                text: "Deleted Successfully .",
+                text: "Deleted Successfully.",
                 icon: "success",
               });
 
@@ -55,6 +58,10 @@ const MyFood = () => {
               );
               setMyFood(remainingFood);
             }
+          })
+          .catch((error) => {
+            console.error("Failed to fetch listings:", error);
+            setErrmsg(error.response.data.message);
           });
       }
     });
@@ -119,17 +126,11 @@ const MyFood = () => {
                 </td>
               </tr>
             )}
- 
           </tbody>
-          
         </table>
-                   {
-              errmsg ? <p className="text-red-500 text-center pb-5 text-2xl">
-                {
-                  errmsg
-                }
-              </p> : undefined
-            }
+        {errmsg ? (
+          <p className="text-red-500 text-center pb-5 text-2xl">{errmsg}</p>
+        ) : undefined}
       </div>
     </div>
   );

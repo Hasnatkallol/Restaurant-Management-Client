@@ -46,7 +46,7 @@ const FirebaseProvider = ({ children }) => {
         try {
           const fetchData = async () => {
             const res = await axios.post(
-              "http://localhost:4000/create-token",
+              "https://reasturent-management-server.vercel.app/create-token",
               userInfo,
               { withCredentials: true }
             );
@@ -62,7 +62,9 @@ const FirebaseProvider = ({ children }) => {
       } else {
         try {
           const fetchData = async () => {
-            const res = await axios.post("http://localhost:4000/logout");
+            const res = await axios.post(
+              "https://reasturent-management-server.vercel.app/logout"
+            );
             const data = await res?.data;
             // console.log('Logout response from server:', data);
             setLoading(false);
