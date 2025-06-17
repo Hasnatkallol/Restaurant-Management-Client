@@ -84,7 +84,6 @@ const TopDetails = () => {
               <p className="text-gray-600">{addBy?.email || user?.email}</p>
             </div>
 
-            {/* purchase food conditional */}
             <div>
               {user && userEmail === foodOwnerName ? (
                 <button className="bg-gradient-to-r  from-[#e0f2ff] via-[#e9e7fc] to-[#f1e7ff] text-black font-semibold py-3 my-4 px-6 rounded-2xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg hover:opacity-95">

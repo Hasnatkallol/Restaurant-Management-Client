@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// Swiper components and styles
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -58,7 +58,7 @@ const Slider = () => {
                 className="w-full h-[90vh] object-cover"
                 loading="lazy"
               />
-              {/* Black gradient overlay */}
+
               <div className="absolute inset-0 bg-gradient-to-t from-black  to-black opacity-55"></div>
               <div className="absolute inset-0 flex items-center justify-center px-6">
                 <div className="text-center text-white max-w-2xl relative z-10">

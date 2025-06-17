@@ -5,7 +5,7 @@ import Slider from "./Slider";
 import CustomerFeedback from "./CustomerFeedback";
 import StaffSchedulePanel from "./StaffSchedulepanel";
 import TopPurchase from "./TopPurchase";
-// import ThemeToggle from "../../Shared/ThemeToggle (1)";
+
 
 const Home = () => {
     useEffect(() => {
