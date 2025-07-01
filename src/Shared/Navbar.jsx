@@ -65,6 +65,26 @@ const Navbar = () => {
           Gallery
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "text-accent text-2xl" : "text-base-content text-2xl"
+          }
+          to="/helpcenter"
+        >
+          Help Center
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "text-accent text-2xl" : "text-base-content text-2xl"
+          }
+          to="/healthydiet"
+        >
+         Healthy & Diet
+        </NavLink>
+      </li>
       <button onClick={toggleTheme} className="my-2 mx-2 hidden lg:block">
         {theme === "light" ? <FaMoon size={30} /> : <CiSun size={30} />}
       </button>

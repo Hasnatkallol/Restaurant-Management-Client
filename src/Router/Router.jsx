@@ -16,6 +16,8 @@ import AddFood from "../Pages/AddFood/AddFood";
 import MyFood from "../Pages/MyFood/MyFood";
 import Update from "../Pages/MyFood/Update";
 import MyOrder from "../Pages/MyOrder/MyOrder";
+import HelpCenter from "../Pages/HelpCenter/HelpCenter";
+import HealthyDiet from "../Pages/HealthyDiet/HealthyDiet";
 
 export const router = createBrowserRouter([
   {
@@ -110,6 +112,16 @@ export const router = createBrowserRouter([
         ),
         hydrateFallbackElement: <Loading></Loading>,
       },
+            {
+        path: "helpcenter",
+        Component: HelpCenter,
+        hydrateFallbackElement: <Loading></Loading>,
+      },            {
+        path: "healthydiet",
+        Component: HealthyDiet,
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+
     ],
   },
 ]);
