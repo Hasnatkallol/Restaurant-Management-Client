@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { FirebaseAuthContext } from "../../Firebase/FirebaseAuthContext";
 import login from "../../assets/Login/Animation - 1749975924469.json";
 import Lottie from "lottie-react";
+import GitHubLogin from "./GitHubLogin";
 
 const Login = () => {
   useEffect(() => {
@@ -114,6 +115,12 @@ const Login = () => {
                 Login
               </button>
             </form>
+            <div className="flex items-center my-6">
+              <div className="flex-grow border-t"></div>
+              <span className="mx-4 text-sm">OR CONTINUE WITH</span>
+              <div className="flex-grow border-t"></div>
+            </div>
+
             <div className="space-y-3">
               <button
                 onClick={singInGoogle}
@@ -122,6 +129,9 @@ const Login = () => {
                 <FcGoogle size={24} />
                 Login With Google
               </button>
+            </div>
+            <div className="space-y-3">
+              <GitHubLogin></GitHubLogin>
             </div>
             <h1 className="text-black font-semibold text-center mt-4">
               Don't have an account?{" "}

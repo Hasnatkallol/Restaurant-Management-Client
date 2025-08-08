@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import { FirebaseAuthContext } from "../../Firebase/FirebaseAuthContext";
 import Lottie from "lottie-react";
+import GitHubLogin from "../Login/GitHubLogin";
 
 const Register = () => {
   useEffect(() => {
@@ -158,6 +159,11 @@ const Register = () => {
             <p className="text-green-500">Successfully Signed Up</p>
           )}
         </form>
+            <div className="flex items-center my-6">
+              <div className="flex-grow border-t"></div>
+              <span className="mx-4 text-sm">OR CONTINUE WITH</span>
+              <div className="flex-grow border-t"></div>
+            </div>
 
         <div className="mt-4">
           <button
@@ -167,6 +173,9 @@ const Register = () => {
             <FcGoogle size={24} />
             Sign Up With Google
           </button>
+        </div>
+             <div className="mt-4">
+         <GitHubLogin></GitHubLogin>
         </div>
 
         <h1 className="text-black font-semibold text-center mt-4">
