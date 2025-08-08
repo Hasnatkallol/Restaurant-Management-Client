@@ -18,6 +18,7 @@ import Update from "../Pages/MyFood/Update";
 import MyOrder from "../Pages/MyOrder/MyOrder";
 import HelpCenter from "../Pages/HelpCenter/HelpCenter";
 import HealthyDiet from "../Pages/HealthyDiet/HealthyDiet";
+import Dashboard from "../Dashboard/Dashboard";
 
 export const router = createBrowserRouter([
   {
@@ -108,6 +109,15 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyOrder></MyOrder>
+          </PrivateRoute>
+        ),
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+            {
+        path: "dashboard",
+        element: (
+          <PrivateRoute>
+            <Dashboard></Dashboard>
           </PrivateRoute>
         ),
         hydrateFallbackElement: <Loading></Loading>,

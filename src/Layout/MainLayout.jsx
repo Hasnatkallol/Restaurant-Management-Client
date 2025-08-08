@@ -1,22 +1,22 @@
 import React from "react";
 import Navbar from "../Shared/Navbar";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import Footer from "../Shared/Footer";
-import Sidenavbar from "../Shared/Sidenavbar";
 
 const MainLayout = () => {
+  const location = useLocation();
+  const isDashboard = location.pathname.startsWith("/dashboard");
+
   return (
     <div>
-  
-      <Navbar></Navbar>
-
+      <Navbar />
       <div className="min-h-[calc(100vh-463px)]">
-     
         <main>
-          <Outlet></Outlet>
+          <Outlet />
         </main>
       </div>
-      <Footer></Footer>
+
+      {!isDashboard && <Footer />}
     </div>
   );
 };
