@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router";
 
 const Banner = () => {
   return (
@@ -31,12 +32,14 @@ const Banner = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mt-8 flex justify-center gap-4 flex-wrap"
         >
+         <Link  to="/login" >
           <button className="btn btn-secondary text-base-100">
             Get Started
           </button>
-          <button className="btn btn-accent text-base-100">
+         </Link>
+        <Link to="/helpcenter">  <button className="btn btn-accent text-base-100">
             Learn More
-          </button>
+          </button></Link>
         </motion.div>
       </div>
     </div>
