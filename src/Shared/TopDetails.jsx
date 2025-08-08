@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Link, useLoaderData } from "react-router";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
-import Swal from "sweetalert2";
 
 const TopDetails = () => {
   const {
@@ -18,27 +17,19 @@ const TopDetails = () => {
   } = useLoaderData();
 
   const { user } = useContext(FirebaseAuthContext);
-  console.log("user", user);
+  const userEmail = user?.email;
+  const foodOwnerEmail = addBy?.email;
 
   useEffect(() => {
     fetch(`https://reasturent-management-server.vercel.app/foods/${_id}`)
       .then((res) => res.json())
-      .then((data) => {
-        console.log("Fetched food item:", data);
-      })
+      .then((data) => console.log("Fetched food item:", data))
       .catch((err) => console.error(err));
   }, [_id]);
 
-  const userEmail = user?.email;
-  console.log("user", userEmail);
-
-  const foodOwnerName = addBy?.email;
-  console.log("owner", foodOwnerName);
-
   return (
-    <div className="max-w-4xl mx-auto p-6 mt-10 bg-gradient-to-br from-white via-slate-50 to-slate-100 shadow-2xl rounded-2xl my-10 transition-all duration-300">
+    <div className="max-w-4xl mx-auto p-6 mt-10 bg-base-100 shadow-2xl rounded-2xl my-10 transition-all duration-300">
       <div className="flex flex-col md:flex-row gap-6">
-       
         <img
           src={image}
           alt={name}
@@ -46,30 +37,28 @@ const TopDetails = () => {
         />
         <div className="flex-1 flex flex-col justify-between">
           <div>
-            <h2 className="text-4xl font-bold text-gray-800 mb-2">{name}</h2>
-            <p className="text-sm text-indigo-500 mb-4 italic">
+            <h2 className="text-4xl font-bold text-base-content mb-2">{name}</h2>
+            <p className="text-sm text-secondary mb-4 italic">
               Category: {category}
             </p>
-            <p className="text-gray-700 mb-6">{description}</p>
+            <p className="text-base-content mb-6">{description}</p>
 
             <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
               <div>
-                <p className="font-semibold text-gray-600">Origin</p>
-                <p className="text-gray-800">{origin}</p>
+                <p className="font-semibold text-secondary">Origin</p>
+                <p className="text-base-content">{origin}</p>
               </div>
               <div>
-                <p className="font-semibold text-gray-600">
-                  Quantity Available
-                </p>
-                <p className="text-gray-800">{quantity}</p>
+                <p className="font-semibold text-secondary">Quantity Available</p>
+                <p className="text-base-content">{quantity}</p>
               </div>
               <div>
-                <p className="font-semibold text-gray-600">Price</p>
-                <p className="text-green-600 font-semibold">${price}</p>
+                <p className="font-semibold text-secondary">Price</p>
+                <p className="text-success font-semibold">${price}</p>
               </div>
               <div>
-                <p className="font-semibold text-gray-600">Purchased</p>
-                <p className="text-blue-600 font-medium">
+                <p className="font-semibold text-secondary">Purchased</p>
+                <p className="text-info font-medium">
                   {purchaseCount || 0} times
                 </p>
               </div>
@@ -77,25 +66,24 @@ const TopDetails = () => {
           </div>
 
           <div className="mt-6 flex flex-col gap-4">
-            <div className="border-t pt-4">
-              <p className="text-sm text-gray-500">Added by:</p>
-              <p className="text-gray-800 font-semibold">
+            <div className="border-t pt-4 border-neutral">
+              <p className="text-sm text-base-content-content">Added by:</p>
+              <p className="text-base-content font-semibold">
                 {addBy?.name || user?.displayName}
               </p>
-              <p className="text-gray-600">{addBy?.email || user?.email}</p>
+              <p className="text-base-content">{addBy?.email || user?.email}</p>
             </div>
 
             <div>
-              {user && userEmail === foodOwnerName ? (
-                <button className="bg-gradient-to-r  from-[#e0f2ff] via-[#e9e7fc] to-[#f1e7ff] text-black font-semibold py-3 my-4 px-6 rounded-2xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg hover:opacity-95">
+              {user && userEmail === foodOwnerEmail ? (
+                <button className="bg-neutral text-base-content font-semibold py-3 my-4 px-6 rounded-2xl shadow-md transition duration-300 hover:scale-105 hover:shadow-lg">
                   You cannot purchase your own food item.
                 </button>
               ) : (
-                <Link className="flex items-centers " to={`/purchase/${_id}`}>
-                  {" "}
-                  <button className="bg-gradient-to-r  from-[#e0f2ff] via-[#e9e7fc] to-[#f1e7ff] text-black font-semibold py-3 my-4 px-6 rounded-2xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg hover:opacity-95">
+                <Link className="flex items-center" to={`/purchase/${_id}`}>
+                  <button className="bg-secondary text-white font-semibold py-3 my-4 px-6 rounded-2xl shadow-md transition duration-300 hover:bg-accent hover:scale-105 hover:shadow-lg">
                     Purchase
-                  </button>{" "}
+                  </button>
                 </Link>
               )}
             </div>
