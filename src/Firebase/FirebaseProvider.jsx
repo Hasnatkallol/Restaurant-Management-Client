@@ -70,7 +70,9 @@ const FirebaseProvider = ({ children }) => {
         try {
           const fetchData = async () => {
             const res = await axios.post(
-              "https://reasturent-management-server.vercel.app/logout"
+              "https://reasturent-management-server.vercel.app/logout",null,{
+                withCredentials: true
+              }
             );
             const data = await res?.data;
             console.log('Logout response from server:', data);
