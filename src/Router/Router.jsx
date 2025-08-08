@@ -18,7 +18,7 @@ import Update from "../Pages/MyFood/Update";
 import MyOrder from "../Pages/MyOrder/MyOrder";
 import HelpCenter from "../Pages/HelpCenter/HelpCenter";
 import HealthyDiet from "../Pages/HealthyDiet/HealthyDiet";
-import Dashboard from "../Dashboard/Dashboard";
+import Profile from "../Shared/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -83,6 +83,15 @@ export const router = createBrowserRouter([
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+          <Profile></Profile>
+          </PrivateRoute>
+        ),
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
         path: "myfood",
         element: (
           <PrivateRoute>
@@ -113,25 +122,16 @@ export const router = createBrowserRouter([
         ),
         hydrateFallbackElement: <Loading></Loading>,
       },
-            {
-        path: "dashboard",
-        element: (
-          <PrivateRoute>
-            <Dashboard></Dashboard>
-          </PrivateRoute>
-        ),
-        hydrateFallbackElement: <Loading></Loading>,
-      },
-            {
+      {
         path: "helpcenter",
         Component: HelpCenter,
         hydrateFallbackElement: <Loading></Loading>,
-      },            {
+      },
+      {
         path: "healthydiet",
         Component: HealthyDiet,
         hydrateFallbackElement: <Loading></Loading>,
       },
-
     ],
   },
 ]);

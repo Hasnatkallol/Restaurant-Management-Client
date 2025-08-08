@@ -204,12 +204,42 @@ const Navbar = () => {
                 >
                   <li>
                     <Link
-                      to="/dashboard"
+                      to="/profile"
+                      className="block px-4 py-2 text-sm text-base-content hover:bg-base-200"
+                      role="menuitem"
+                     
+                    >
+                      My Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/addfood"
                       className="block px-4 py-2 text-sm text-base-content hover:bg-base-200"
                       role="menuitem"
                       onClick={() => setUserDropdownOpen(false)}
                     >
-                      Dashboard
+                      Add Food
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/myfood"
+                      className="block px-4 py-2 text-sm text-base-content hover:bg-base-200"
+                      role="menuitem"
+                      onClick={() => setUserDropdownOpen(false)}
+                    >
+                      My Food
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/myorder"
+                      className="block px-4 py-2 text-sm text-base-content hover:bg-base-200"
+                      role="menuitem"
+                      onClick={() => setUserDropdownOpen(false)}
+                    >
+                      My Order
                     </Link>
                   </li>
                   <li>
