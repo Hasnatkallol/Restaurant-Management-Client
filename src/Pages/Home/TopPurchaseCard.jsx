@@ -36,7 +36,7 @@ const TopPurchaseCard = ({ topFood }) => {
             <p className="text-sm text-gray-600 mt-1 line-clamp-3">
               {topFood.description || "No description available."}
             </p>
-          </div>
+          </div>npm run dev
 
           <div className="flex items-center justify-between">
             <span className="text-green-600 font-bold text-lg">

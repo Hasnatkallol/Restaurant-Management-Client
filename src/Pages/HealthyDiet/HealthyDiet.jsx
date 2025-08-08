@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const foodItems = [
-  {
-    id: 1,
-    name: "Grilled Chicken Salad",
-    category: "Low-Carb",
-    description: "Fresh salad with grilled chicken breast.",
-    image:
-      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=80",
-  },
+
   {
     id: 2,
     name: "Quinoa & Veggie Bowl",

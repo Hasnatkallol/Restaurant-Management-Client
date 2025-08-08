@@ -66,7 +66,7 @@ const FirebaseProvider = ({ children }) => {
               "https://reasturent-management-server.vercel.app/logout"
             );
             const data = await res?.data;
-            // console.log('Logout response from server:', data);
+            console.log('Logout response from server:', data);
             setLoading(false);
           };
           fetchData();
