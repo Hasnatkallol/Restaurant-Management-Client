@@ -37,7 +37,7 @@ const Slider = () => {
   const [swiperInstance, setSwiperInstance] = useState(null);
 
   return (
-    <div className="pb-10">
+    <div className="pb-13 ">
       <div
         onMouseEnter={() => swiperInstance && swiperInstance.autoplay.stop()}
         onMouseLeave={() => swiperInstance && swiperInstance.autoplay.start()}

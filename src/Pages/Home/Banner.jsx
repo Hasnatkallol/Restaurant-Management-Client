@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 const Banner = () => {
   return (
-    <div className="bg-neutral py-12">
+    <div className="bg-neutral py-12 lg:pb-25">
       <div className="w-11/12 mx-auto text-center">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}

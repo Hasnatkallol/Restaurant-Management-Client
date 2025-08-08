@@ -38,6 +38,7 @@ const TopDetails = () => {
   return (
     <div className="max-w-4xl mx-auto p-6 mt-10 bg-gradient-to-br from-white via-slate-50 to-slate-100 shadow-2xl rounded-2xl my-10 transition-all duration-300">
       <div className="flex flex-col md:flex-row gap-6">
+       
         <img
           src={image}
           alt={name}

@@ -10,7 +10,7 @@ const TopPurchaseCard = ({ topFood }) => {
   return (
     <div>
       <motion.div
-        className="w-11/12 max-w-md mx-auto bg-gradient-to-br from-white via-blue-50 to-blue-100 shadow-md rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300"
+        className="w-11/12 max-w-md mx-auto bg-[var(--color-base-100)] dark:bg-[var(--color-base-100)] text-[var(--color-base-content)] shadow-md rounded-xl overflow-hidden border border-gray-200 dark:border-[var(--color-neutral)] hover:shadow-2xl transition-all duration-300"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         whileHover={{ scale: 1.03 }}
@@ -30,24 +30,23 @@ const TopPurchaseCard = ({ topFood }) => {
 
         <div className="p-5 flex flex-col justify-between min-h-[250px]">
           <div className="mb-4">
-            <h3 className="text-xl font-semibold text-gray-800 truncate">
+            <h3 className="text-xl font-semibold text-[var(--color-base-content)] truncate">
               {topFood.name || "Food Item"}
             </h3>
-            <p className="text-sm text-gray-600 mt-1 line-clamp-3">
+            <p className="text-sm text-[var(--color-base-content)] opacity-70 mt-1 line-clamp-3">
               {topFood.description || "No description available."}
             </p>
-          </div>npm run dev
+          </div>
 
           <div className="flex items-center justify-between">
-            <span className="text-green-600 font-bold text-lg">
+            <span className="text-[var(--color-success)] font-bold text-lg">
               ${topFood.price?.toFixed(2) || "0.00"}
             </span>
 
-            <Link className="flex items-centers " to={`/foods/${_id}`}>
-              {" "}
-              <button className="bg-gradient-to-r  from-[#e0f2ff] via-[#e9e7fc] to-[#f1e7ff] text-black font-semibold py-3 my-4 px-6 rounded-2xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg hover:opacity-95">
+            <Link className="flex items-center" to={`/foods/${_id}`}>
+              <button className="bg-[var(--color-secondary)] text-white font-semibold py-2 px-5 rounded-2xl shadow-md transition duration-300 hover:scale-105 hover:shadow-lg">
                 See Details
-              </button>{" "}
+              </button>
             </Link>
           </div>
         </div>
