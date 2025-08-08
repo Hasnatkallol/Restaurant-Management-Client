@@ -193,7 +193,7 @@ const Navbar = () => {
 
                 {/* User Dropdown */}
                 <ul
-                  className={`origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-base-100 ring-1 ring-black ring-opacity-5 focus:outline-none transition-transform transform ${
+                  className={`origin-top-right absolute right-0 mt-2 w-48 rounded-xl shadow-lg bg-base-100 ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-200 ${
                     userDropdownOpen
                       ? "scale-100 opacity-100"
                       : "scale-95 opacity-0 pointer-events-none"
@@ -202,12 +202,25 @@ const Navbar = () => {
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
                 >
+                  {/* Dropdown Header */}
+                  <li className="flex items-center justify-between px-4 py-2 border-b border-base-300">
+                    <span className="text-sm font-semibold text-accent">
+                      {user.displayName || "User"}
+                    </span>
+                    <button
+                      onClick={() => setUserDropdownOpen(false)}
+                      className="p-1 rounded-full hover:bg-base-200 transition"
+                      aria-label="Close dropdown"
+                    >
+                      <FaTimes size={14} className="text-base-content" />
+                    </button>
+                  </li>
+
                   <li>
                     <Link
                       to="/profile"
-                      className="block px-4 py-2 text-sm text-base-content hover:bg-base-200"
+                      className="block px-4 py-2 text-sm text-base-content hover:bg-base-200 rounded-md transition"
                       role="menuitem"
-                     
                     >
                       My Profile
                     </Link>
@@ -215,7 +228,7 @@ const Navbar = () => {
                   <li>
                     <Link
                       to="/addfood"
-                      className="block px-4 py-2 text-sm text-base-content hover:bg-base-200"
+                      className="block px-4 py-2 text-sm text-base-content hover:bg-base-200 rounded-md transition"
                       role="menuitem"
                       onClick={() => setUserDropdownOpen(false)}
                     >
@@ -225,7 +238,7 @@ const Navbar = () => {
                   <li>
                     <Link
                       to="/myfood"
-                      className="block px-4 py-2 text-sm text-base-content hover:bg-base-200"
+                      className="block px-4 py-2 text-sm text-base-content hover:bg-base-200 rounded-md transition"
                       role="menuitem"
                       onClick={() => setUserDropdownOpen(false)}
                     >
@@ -235,7 +248,7 @@ const Navbar = () => {
                   <li>
                     <Link
                       to="/myorder"
-                      className="block px-4 py-2 text-sm text-base-content hover:bg-base-200"
+                      className="block px-4 py-2 text-sm text-base-content hover:bg-base-200 rounded-md transition"
                       role="menuitem"
                       onClick={() => setUserDropdownOpen(false)}
                     >
@@ -245,7 +258,7 @@ const Navbar = () => {
                   <li>
                     <button
                       onClick={handleLogout}
-                      className="w-full text-left block px-4 py-2 text-sm text-error hover:bg-error/20 hover:text-error-focus"
+                      className="w-full text-left block px-4 py-2 text-sm text-error hover:bg-error/20 hover:text-error-focus rounded-md transition"
                       role="menuitem"
                     >
                       Logout
@@ -278,7 +291,10 @@ const Navbar = () => {
           </button>
         </div>
         <nav className="mt-6 px-6">
-          <ul className="space-y-6 text-xl" onClick={() => setDropdownOpen(false)}>
+          <ul
+            className="space-y-6 text-xl"
+            onClick={() => setDropdownOpen(false)}
+          >
             {links}
           </ul>
         </nav>
