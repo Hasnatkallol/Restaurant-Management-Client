@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { FirebaseAuthContext } from "../../Firebase/FirebaseAuthContext";
 
@@ -21,10 +20,9 @@ const MyOrder = () => {
       })
       .catch((error) => {
         console.error("Failed to fetch listings:", error);
-        setErrmsg(error.response.data.message);
+        setErrmsg(error.response?.data?.message || "Failed to fetch orders");
       });
   }, [user.email]);
-  console.log(myOrder);
 
   const handleDelete = (_id) => {
     Swal.fire({
@@ -32,7 +30,7 @@ const MyOrder = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "var(--color-secondary)",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
@@ -42,25 +40,21 @@ const MyOrder = () => {
             `https://reasturent-management-server.vercel.app/purchasefood/${_id}?email=${user.email}`,
             { withCredentials: true }
           )
-
           .then((data) => {
-            console.log(data.deletedCount);
             if (data.data.deletedCount) {
               Swal.fire({
                 title: "Deleted!",
-                text: "Deleted Successfully .",
+                text: "Deleted Successfully.",
                 icon: "success",
               });
 
-              const remainingFood = myOrder.filter(
-                (element) => element._id !== _id
-              );
-              setMyOrder(remainingFood);
+              const remaining = myOrder.filter((el) => el._id !== _id);
+              setMyOrder(remaining);
             }
           })
           .catch((error) => {
-            console.error("Failed to fetch listings:", error);
-            setErrmsg(error.response.data.message);
+            console.error("Failed to delete order:", error);
+            setErrmsg(error.response?.data?.message || "Failed to delete order");
           });
       }
     });
@@ -68,23 +62,23 @@ const MyOrder = () => {
 
   return (
     <div className="w-11/12 mx-auto mt-10">
-      <h1 className="text-3xl font-bold text-center mb-4">My Orders</h1>
+      <h1 className="text-3xl font-bold text-center mb-4 text-[var(--color-base-content)]">
+        My Orders
+      </h1>
 
-      <p className="text-center text-gray-500 mb-6">
-        Below are the foods you’ve Order. You can cancel order.
+      <p className="text-center text-[var(--color-base-content)] opacity-70 mb-6">
+        Below are the foods you’ve ordered. You can cancel them if needed.
       </p>
 
       <div className="overflow-x-auto rounded-lg shadow-lg mb-5">
-        <table className="min-w-full text-sm text-left text-gray-700 bg-white">
-          <thead className="text-xs uppercase bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <table className="min-w-full text-sm text-left text-[var(--color-base-content)] bg-[var(--color-base-100)]">
+          <thead className="text-xs uppercase bg-[var(--color-secondary)] text-white">
             <tr>
               <th className="px-6 py-4 font-semibold">Image</th>
               <th className="px-6 py-4 font-semibold">Name</th>
               <th className="px-6 py-4 font-semibold">Price</th>
               <th className="px-6 py-4 font-semibold">Food Owner</th>
-              <th className="px-6 py-4 font-semibold">
-                Purchase Data and Time
-              </th>
+              <th className="px-6 py-4 font-semibold">Purchase Date & Time</th>
               <th className="px-6 py-4 font-semibold text-center">Actions</th>
             </tr>
           </thead>
@@ -93,14 +87,15 @@ const MyOrder = () => {
               <tr
                 key={order._id}
                 className={`${
-                  index % 2 === 0 ? "bg-gray-50" : "bg-white"
-                } hover:bg-blue-50 transition duration-150`}
+                  index % 2 === 0
+                    ? "bg-[var(--color-neutral)]"
+                    : "bg-[var(--color-base-100)]"
+                }`}
               >
                 <td className="px-6 py-4">
-                  {" "}
                   <img
                     src={order.image}
-                    alt={order.name}
+                    alt={order.foodName}
                     className="w-16 h-16 object-cover rounded"
                   />
                 </td>
@@ -108,29 +103,36 @@ const MyOrder = () => {
                 <td className="px-6 py-4">${order.price}</td>
                 <td className="px-6 py-4">{order.foodOwnerName}</td>
                 <td className="px-6 py-4">{order.purchaseDate}</td>
-                <td className="px-6 py-4 text-center space-x-2">
+                <td className="px-6 py-4 text-center">
                   <button
                     onClick={() => handleDelete(order._id)}
-                    className="bg-gradient-to-r from-red-400 to-red-600 text-white font-semibold px-4 py-1 rounded-xl shadow-sm hover:scale-105 transition text-xs"
+                    className="bg-[var(--color-error)] text-white font-semibold px-4 py-1 rounded-xl shadow-sm text-xs"
                   >
                     Delete
                   </button>
                 </td>
               </tr>
             ))}
+
             {myOrder.length === 0 && (
               <tr>
-                <td colSpan="5" className="text-center py-6 text-gray-400">
-                  No Order added yet.
+                <td
+                  colSpan="6"
+                  className="text-center py-6 text-[var(--color-base-content)] opacity-60"
+                >
+                  No orders yet.
                 </td>
               </tr>
             )}
           </tbody>
         </table>
       </div>
-          {errmsg ? (
-          <p className="text-red-500 text-center pb-5 text-2xl">{errmsg}</p>
-        ) : undefined}
+
+      {errmsg && (
+        <p className="text-red-500 dark:text-[var(--color-error)] text-center pb-5 text-2xl">
+          {errmsg}
+        </p>
+      )}
     </div>
   );
 };
