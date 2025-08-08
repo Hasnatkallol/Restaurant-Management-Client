@@ -26,16 +26,17 @@ const PurchaseFood = () => {
       purchaseDate: time,
       foodOwnerName: addBy.name,
     };
-    if (quantity == 0) {
+
+    if (quantity === 0) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Items is not available!",
         footer: '<a href="#">Why do I have this issue?</a>',
       });
-
-      return null;
+      return;
     }
+
     if (purchasedQty > quantity) {
       Swal.fire({
         icon: "error",
@@ -43,8 +44,7 @@ const PurchaseFood = () => {
         text: "Purchase quantity exceeds available stock",
         footer: '<a href="#">Why do I have this issue?</a>',
       });
-
-      return null;
+      return;
     }
 
     axios
@@ -65,50 +65,47 @@ const PurchaseFood = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-10 my-10 bg-white mt-10 rounded-2xl shadow-lg">
-      <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">
-        Purchase Food
-      </h1>
+    <div className="max-w-2xl mx-auto px-6 py-10 my-10 rounded-2xl shadow-lg bg-base-100 text-base-content">
+      <h1 className="text-3xl font-bold mb-8 text-center">Purchase Food</h1>
       <form onSubmit={handlePurchase} className="space-y-6">
+        {/* Food Name */}
         <div>
-          <label className="block text-gray-600 font-semibold mb-1">
-            Food Name
-          </label>
+          <label className="block font-semibold mb-1">Food Name</label>
           <input
             type="text"
             defaultValue={name}
             readOnly
-            className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+            className="w-full p-3 border border-neutral rounded-lg bg-neutral text-base-content"
           />
         </div>
+
+        {/* Image */}
         <div>
-          <label className="block text-gray-600 font-semibold mb-1">
-            Image
-          </label>
+          <label className="block font-semibold mb-1">Image</label>
           <input
             type="url"
             name="image"
             defaultValue={image}
             readOnly
-            className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+            className="w-full p-3 border border-neutral rounded-lg bg-neutral text-base-content"
           />
         </div>
 
+        {/* Price */}
         <div>
-          <label className="block text-gray-600 font-semibold mb-1">
-            Price (per unit)
-          </label>
+          <label className="block font-semibold mb-1">Price (per unit)</label>
           <input
             type="text"
             defaultValue={`$${price}`}
             readOnly
-            className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+            className="w-full p-3 border border-neutral rounded-lg bg-neutral text-base-content"
           />
         </div>
 
+        {/* Quantity */}
         <div>
-          <label className="block text-gray-600 font-semibold mb-1">
-            Quantity ( {quantity === 0 ? "Not Available" : "max:" + quantity})
+          <label className="block font-semibold mb-1">
+            Quantity ({quantity === 0 ? "Not Available" : "max:" + quantity})
           </label>
           <input
             type="number"
@@ -116,38 +113,37 @@ const PurchaseFood = () => {
             min={1}
             required
             placeholder="Enter quantity"
-            className="w-full p-3 border border-gray-300 rounded-lg"
+            className="w-full p-3 border border-neutral rounded-lg bg-base-100 text-base-content"
           />
         </div>
 
+        {/* Buyer Name */}
         <div>
-          <label className="block text-gray-600 font-semibold mb-1">
-            Buyer Name
-          </label>
+          <label className="block font-semibold mb-1">Buyer Name</label>
           <input
             type="text"
             value={user?.displayName || ""}
             readOnly
-            className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+            className="w-full p-3 border border-neutral rounded-lg bg-neutral text-base-content"
           />
         </div>
 
+        {/* Buyer Email */}
         <div>
-          <label className="block text-gray-600 font-semibold mb-1">
-            Buyer Email
-          </label>
+          <label className="block font-semibold mb-1">Buyer Email</label>
           <input
             type="email"
             value={user?.email || ""}
             readOnly
-            className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+            className="w-full p-3 border border-neutral rounded-lg bg-neutral text-base-content"
           />
         </div>
 
+        {/* Submit Button */}
         <button
           type="submit"
           disabled={quantity === 0}
-          className="w-full bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 text-black font-semibold py-3 px-6 rounded-xl shadow transition-all hover:scale-105 hover:shadow-lg"
+          className="w-full bg-secondary text-base-100 font-semibold py-3 px-6 rounded-xl shadow transition-all hover:bg-accent hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Confirm Purchase
         </button>
