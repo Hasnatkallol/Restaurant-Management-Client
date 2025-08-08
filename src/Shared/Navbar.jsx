@@ -82,7 +82,7 @@ const Navbar = () => {
           }
           to="/healthydiet"
         >
-         Healthy & Diet
+          Healthy & Diet
         </NavLink>
       </li>
       <button onClick={toggleTheme} className="my-2 mx-2 hidden lg:block">
@@ -94,55 +94,75 @@ const Navbar = () => {
   return (
     <div className="bg-base-200 sticky top-0 z-40 shadow-md">
       <div className="w-11/12 mx-auto">
-        <div className="flex flex-1 items-center py-2  justify-between">
-          {/* Mobile Dropdown */}
-          <div className="navbar-start ">
-            <div className="dropdown relative">
-              <div
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="mr-3 lg:hidden cursor-pointer flex items-center"
-              >
-                {dropdownOpen ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
-                )}
-              </div>
-
-              {dropdownOpen && (
-                <div className="absolute top-11 left-0 w-60 bg-base-200 rounded-b-2xl shadow z-50 p-4">
-                  <ul onClick={() => setDropdownOpen(false)}>{links}</ul>
-                </div>
+        <div className="flex flex-1 items-center py-2 justify-between">
+          {/* Mobile Dropdown Button */}
+          <div className="navbar-start">
+            <div
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              className="mr-3 lg:hidden cursor-pointer flex items-center"
+              aria-label="Toggle Menu"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") setDropdownOpen(!dropdownOpen);
+              }}
+            >
+              {dropdownOpen ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
               )}
             </div>
 
-            <div className="">
+            {/* Sidebar mobile menu */}
+            <div
+              className={`fixed top-0 left-0 h-screen w-64 bg-base-200 z-50 shadow transition-transform duration-300 ease-in-out transform lg:hidden ${
+                dropdownOpen ? "translate-x-0" : "-translate-x-full"
+              }`}
+            >
+              <div className="flex flex-col h-full p-4">
+                {/* Logo inside drawer */}
+                <div className="mb-6 flex justify-between items-center">
+                  <h1 className="text-accent text-2xl font-semibold italic">RestroFlow</h1>
+                  <button
+                    onClick={() => setDropdownOpen(false)}
+                    className="text-base-content text-2xl font-bold"
+                    aria-label="Close Menu"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <ul onClick={() => setDropdownOpen(false)}>{links}</ul>
+              </div>
+            </div>
+
+            <div>
               <h1 className="text-accent text-xl lg:text-2xl hidden lg:block font-semibold">
                 <i>RestroFlow</i>
               </h1>
@@ -154,11 +174,12 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
 
-          <div className=" flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <div>
               <button
                 onClick={toggleTheme}
                 className="my-2 mx-2 lg:hidden block"
+                aria-label="Toggle Theme"
               >
                 {theme === "light" ? <FaMoon size={20} /> : <CiSun size={20} />}
               </button>
@@ -169,12 +190,12 @@ const Navbar = () => {
           </div>
 
           {/* Auth & Avatar */}
-          <div className="navbar-end  ">
+          <div className="navbar-end">
             <div className="flex items-center space-x-4">
               {!user ? (
                 <NavLink
                   to="/login"
-                  className="rounded-[5px] bg-accent text-base-200 text-sxl lg:text-xl px-2 py-0.5 lg:py-1  lg:px-6 border-none hover:bg-base-200 hover:text-accent"
+                  className="rounded-[5px] bg-accent text-base-200 text-sxl lg:text-xl px-2 py-0.5 lg:py-1 lg:px-6 border-none hover:bg-base-200 hover:text-accent"
                 >
                   Login
                 </NavLink>
@@ -198,31 +219,33 @@ const Navbar = () => {
                       </div>
                     </div>
 
-                    {userDropdownOpen && (
-                      <ul
-                        tabIndex={0}
-                        className="absolute right-0 mt-3 w-32 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box items-center z-50"
-                        onClick={() => setUserDropdownOpen(false)}
-                      >
-                        <li>
-                          <Link to="/addfood">Add Food</Link>
-                        </li>
-                        <li>
-                          <Link to="/myfood">My Food</Link>
-                        </li>
-                        <li>
-                          <Link to="/myorder">My Order</Link>
-                        </li>
-                        <li>
-                          <button
-                            onClick={handleLogout}
-                            className="btn bg-error my-1 h-8 text-white hover:bg-error/80"
-                          >
-                            Logout
-                          </button>
-                        </li>
-                      </ul>
-                    )}
+                    <ul
+                      tabIndex={0}
+                      className={`absolute right-0 mt-3 w-32 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box items-center z-50 transition-all duration-300 ease-in-out transform origin-top ${
+                        userDropdownOpen
+                          ? "scale-y-100 opacity-100"
+                          : "scale-y-0 opacity-0 pointer-events-none"
+                      }`}
+                      onClick={() => setUserDropdownOpen(false)}
+                    >
+                      <li>
+                        <Link to="/addfood">Add Food</Link>
+                      </li>
+                      <li>
+                        <Link to="/myfood">My Food</Link>
+                      </li>
+                      <li>
+                        <Link to="/myorder">My Order</Link>
+                      </li>
+                      <li>
+                        <button
+                          onClick={handleLogout}
+                          className="btn bg-error my-1 h-8 text-white hover:bg-error/80"
+                        >
+                          Logout
+                        </button>
+                      </li>
+                    </ul>
                   </div>
                   <Tooltip id="my-tooltip" />
                 </>
