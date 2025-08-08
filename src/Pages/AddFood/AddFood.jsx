@@ -43,7 +43,7 @@ const AddFood = () => {
 
   return (
     <div className="max-w-3xl mx-auto mt-10  shadow-xl rounded-xl p-6">
-      <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
+      <h2 className="text-2xl font-bold  text-center mb-6">
         Add New Food Item
       </h2>
       <form

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-
 import { FirebaseAuthContext } from "../../Firebase/FirebaseAuthContext";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
@@ -9,6 +8,7 @@ const MyFood = () => {
   const { user } = useContext(FirebaseAuthContext);
   const [myFood, setMyFood] = useState([]);
   const [errmsg, setErrmsg] = useState("");
+
   useEffect(() => {
     setErrmsg("");
     if (user?.email) {
@@ -23,10 +23,11 @@ const MyFood = () => {
         })
         .catch((error) => {
           console.error("Failed to fetch listings:", error);
-          setErrmsg(error.response.data.message);
+          setErrmsg(error.response?.data?.message || "Failed to fetch foods");
         });
     }
-  }, [user.email]);
+  }, [user?.email]);
+
   const handleDelete = (_id) => {
     setErrmsg("");
     Swal.fire({
@@ -34,7 +35,7 @@ const MyFood = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "var(--color-secondary)",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
@@ -44,7 +45,6 @@ const MyFood = () => {
             `https://reasturent-management-server.vercel.app/foods/${_id}?email=${user.email}`,
             { withCredentials: true }
           )
-
           .then((data) => {
             if (data.data.deletedCount) {
               Swal.fire({
@@ -60,23 +60,26 @@ const MyFood = () => {
             }
           })
           .catch((error) => {
-            console.error("Failed to fetch listings:", error);
-            setErrmsg(error.response.data.message);
+            console.error("Failed to delete item:", error);
+            setErrmsg(error.response?.data?.message || "Failed to delete item");
           });
       }
     });
   };
+
   return (
     <div className="w-11/12 mx-auto mt-10">
-      <h1 className="text-3xl font-bold text-center mb-4">My Foods</h1>
+      <h1 className="text-3xl font-bold text-center mb-4 text-[var(--color-base-content)]">
+        My Foods
+      </h1>
 
-      <p className="text-center text-gray-500 mb-6">
+      <p className="text-center text-[var(--color-base-content)] opacity-70 mb-6">
         Below are the foods you’ve added. You can update or delete them.
       </p>
 
       <div className="overflow-x-auto rounded-lg shadow-lg mb-5">
-        <table className="min-w-full text-sm text-left text-gray-700 bg-white">
-          <thead className="text-xs uppercase bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <table className="min-w-full text-sm text-left text-[var(--color-base-content)] bg-[var(--color-base-100)]">
+          <thead className="text-xs uppercase bg-[var(--color-secondary)] text-white">
             <tr>
               <th className="px-6 py-4 font-semibold">Image</th>
               <th className="px-6 py-4 font-semibold">Name</th>
@@ -86,51 +89,57 @@ const MyFood = () => {
             </tr>
           </thead>
           <tbody>
-            {myFood.map((myFood, index) => (
+            {myFood.length === 0 && (
+              <tr>
+                <td
+                  colSpan="5"
+                  className="text-center py-6 text-[var(--color-base-content)] opacity-60"
+                >
+                  No foods added yet.
+                </td>
+              </tr>
+            )}
+            {myFood.map((food, index) => (
               <tr
-                key={myFood._id}
+                key={food._id}
                 className={`${
-                  index % 2 === 0 ? "bg-gray-50" : "bg-white"
-                } hover:bg-blue-50 transition duration-150`}
+                  index % 2 === 0
+                    ? "bg-[var(--color-neutral)]"
+                    : "bg-[var(--color-base-100)]"
+                }`}
               >
                 <td className="px-6 py-4">
-                  {" "}
                   <img
-                    src={myFood.image}
-                    alt={myFood.name}
+                    src={food.image}
+                    alt={food.name}
                     className="w-16 h-16 object-cover rounded"
                   />
                 </td>
-                <td className="px-6 py-4">{myFood.name}</td>
-                <td className="px-6 py-4">${myFood.price}</td>
-                <td className="px-6 py-4">{myFood.category}</td>
+                <td className="px-6 py-4">{food.name}</td>
+                <td className="px-6 py-4">${food.price}</td>
+                <td className="px-6 py-4">{food.category}</td>
                 <td className="px-6 py-4 text-center space-x-2">
-                  <Link to={`/update/${myFood._id}`}>
-                    <button className="bg-gradient-to-r from-[#d4e9ff] via-[#eae6fb] to-[#f5ebff] text-black font-semibold px-4 py-1 rounded-xl shadow-sm hover:scale-105 transition text-xs">
+                  <Link to={`/update/${food._id}`}>
+                    <button className="bg-[var(--color-secondary)] text-white font-semibold px-4 py-1 rounded-xl shadow-sm text-xs">
                       Update
                     </button>
                   </Link>
                   <button
-                    onClick={() => handleDelete(myFood._id)}
-                    className="bg-gradient-to-r from-red-400 to-red-600 text-white font-semibold px-4 py-1 rounded-xl shadow-sm hover:scale-105 transition text-xs"
+                    onClick={() => handleDelete(food._id)}
+                    className="bg-[var(--color-error)] text-white font-semibold px-4 py-1 rounded-xl shadow-sm text-xs"
                   >
                     Delete
                   </button>
                 </td>
               </tr>
             ))}
-            {myFood.length === 0 && (
-              <tr>
-                <td colSpan="5" className="text-center py-6 text-gray-400">
-                  No foods added yet.
-                </td>
-              </tr>
-            )}
           </tbody>
         </table>
-        {errmsg ? (
-          <p className="text-red-500 text-center pb-5 text-2xl">{errmsg}</p>
-        ) : undefined}
+        {errmsg && (
+          <p className="text-red-500 dark:text-[var(--color-error)] text-center pb-5 text-2xl">
+            {errmsg}
+          </p>
+        )}
       </div>
     </div>
   );
